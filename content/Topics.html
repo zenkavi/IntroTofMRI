@@ -398,22 +398,11 @@ document.write(`
 <li><p><a class="reference external" href="https://mriquestions.com/hellipmaking-an-image.html">MRI questions Making an Image</a></p></li>
 </ul>
 </li>
-<li><p>Preprocessing steps for good structural images</p>
-<ul>
-<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/02-Image_Cleanup/index.html">sMRI Clean Up</a></p>
-<ul>
-<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/03-Image_Spatial_Normalization/index.html">sMRI Spatial Normalization</a></p></li>
-<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/04-Image_Quantification/index.html">sMRI Segmentation and Parcellation</a></p></li>
-<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/05-Image_QC/index.html">sMRI Quality Control</a></p></li>
-</ul>
-</li>
-</ul>
-</li>
 <li><p>MR Glossary</p>
 <ul>
 <li><p>T1, T2</p></li>
 <li><p>TR, TE</p></li>
-<li><p>Gradient echo</p></li>
+<li><p>Gradient echo, spin echo</p></li>
 <li><p>b0, phase and magnitude encoding</p></li>
 </ul>
 </li>
@@ -430,7 +419,28 @@ document.write(`
 <section id="preprocessing">
 <h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>fmriprep</p>
+<li><p>Structural images</p>
+<ul>
+<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/02-Image_Cleanup/index.html">sMRI Clean Up</a></p>
+<ul>
+<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/03-Image_Spatial_Normalization/index.html">sMRI Spatial Normalization</a></p></li>
+<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/04-Image_Quantification/index.html">sMRI Segmentation and Parcellation</a></p></li>
+<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/05-Image_QC/index.html">sMRI Quality Control</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Functional images</p>
+<ul>
+<li><p>Distortion correction</p></li>
+<li><p>Motion estimates</p></li>
+<li><p>Slice timing</p></li>
+<li><p>Co-registration</p></li>
+<li><p>Spatial normalization</p></li>
+<li><p>Smoothing</p></li>
+</ul>
+</li>
+<li><p>How to do all of this: <code class="docutils literal notranslate"><span class="pre">fmriprep</span></code></p>
 <ul>
 <li><p>Steps it runs</p></li>
 <li><p>Outputs</p></li>
