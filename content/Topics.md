@@ -9,7 +9,7 @@
 - MR Glossary
 	- T1, T2
 	- TR, TE
-	- Gradient echo, SPIN ECHO
+	- Gradient echo, spin echo
 	- b0, phase and magnitude encoding
 
 ## Data Organization
