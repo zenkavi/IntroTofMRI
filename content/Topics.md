@@ -37,8 +37,13 @@
 ## Data analysis methods
 
 - Encoding
+  - GLM
+    - Design matrix
+    - Convolution and filtering
 	- How to deal with RT
 - Decoding (MVPA)
+  - [pyMVPA](http://www.pymvpa.org/)
+  - [Brainiak](https://brainiak.org/)
 - RSA
 	- [One example toolbox](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003553)
 - Intersubject synchronization
@@ -52,6 +57,10 @@
 - [Neurovault](https://neurovault.org/)
 - [Neurosynth](https://neurosynth.org/)
 - [Neuroquery](https://neuroquery.org/)
+
+## Getting help
+
+- [Neurostars](https://neurostars.org/)
 
 ## Resources
 

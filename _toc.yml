@@ -8,6 +8,10 @@ parts:
   chapters:
   - file: content/Topics
 # - caption: MR Basics
+  # chapters:
+    # - file: content/MRSignal
+    # - file: content/ImageCreation
+    # - file: content/ImageCleanup
 # - caption: Data Organization
 # - caption: Preprocessing
 # - caption: Quality Control
