@@ -1,0 +1,16 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: content/intro
+parts:
+- caption: Overview
+  chapters:
+  - file: content/Topics
+# - caption: MR Basics
+# - caption: Data Organization
+# - caption: Preprocessing
+# - caption: Quality Control
+# - caption: Data Analysis Methods
+# - caption: Visualization
+# - caption: Data sharing and finding

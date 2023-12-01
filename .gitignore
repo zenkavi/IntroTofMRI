@@ -6,7 +6,7 @@ docs/auto_examples
 docs/modules
 *.log
 *.egg*
-build/
+_build/
 dist/
 .cache/
 htmlcov
