@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Topics &#8212; Intro to fMRI</title>
+    <title>Data visualization &#8212; Intro to fMRI</title>
   
   
   
@@ -62,11 +62,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Topics';</script>
-    <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/Topics.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Visualization';</script>
+    <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/Visualization.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Intro To fMRI" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,8 +168,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Topics</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Topics.html">Topics</a></li>
 </ul>
 
     </div>
@@ -242,7 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/zenkavi/IntroTofMRI/issues/new?title=Issue%20on%20page%20%2Fcontent/Topics.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/zenkavi/IntroTofMRI/issues/new?title=Issue%20on%20page%20%2Fcontent/Visualization.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -272,7 +271,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/content/Topics.md" target="_blank"
+      <li><a href="../_sources/content/Visualization.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -282,7 +281,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -343,9 +342,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -356,27 +353,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Topics</h1>
+    <h1>Data visualization</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mr-basics">MR Basics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-organization">Data Organization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control">Quality control</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-analysis-methods">Data analysis methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sharing-finding">Data sharing/finding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting help</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -386,131 +367,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="topics">
-<h1>Topics<a class="headerlink" href="#topics" title="Permalink to this heading">#</a></h1>
-<section id="mr-basics">
-<h2>MR Basics<a class="headerlink" href="#mr-basics" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>What is the measured signal</p></li>
-<li><p>How is the image created</p>
-<ul>
-<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/01-Image_Modalities/index.html">sMRI Acquisition and Modalities</a></p></li>
-<li><p><a class="reference external" href="https://mriquestions.com/hellipmaking-an-image.html">MRI questions Making an Image</a></p></li>
-</ul>
-</li>
-<li><p>MR Glossary</p>
-<ul>
-<li><p>T1, T2</p></li>
-<li><p>TR, TE</p></li>
-<li><p>Gradient echo, spin echo</p></li>
-<li><p>b0, phase and magnitude encoding</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="data-organization">
-<h2>Data Organization<a class="headerlink" href="#data-organization" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Dicom to Nifti</p></li>
-<li><p>BIDS</p></li>
-<li><p>Defacing</p></li>
-</ul>
-</section>
-<section id="preprocessing">
-<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Structural images</p>
-<ul>
-<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/02-Image_Cleanup/index.html">sMRI Clean Up</a></p>
-<ul>
-<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/03-Image_Spatial_Normalization/index.html">sMRI Spatial Normalization</a></p></li>
-<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/04-Image_Quantification/index.html">sMRI Segmentation and Parcellation</a></p></li>
-<li><p><a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/05-Image_QC/index.html">sMRI Quality Control</a></p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Functional images</p>
-<ul>
-<li><p>Distortion correction</p></li>
-<li><p>Motion estimates</p></li>
-<li><p>Slice timing</p></li>
-<li><p>Co-registration</p></li>
-<li><p>Spatial normalization</p></li>
-<li><p>Smoothing</p></li>
-</ul>
-</li>
-<li><p>How to do all of this: <code class="docutils literal notranslate"><span class="pre">fmriprep</span></code></p>
-<ul>
-<li><p>Steps it runs</p></li>
-<li><p>Outputs</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="quality-control">
-<h2>Quality control<a class="headerlink" href="#quality-control" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>MRI-QC: sMRI Quality Control</p></li>
-<li><p>QC of fmriprep outputs</p></li>
-</ul>
-</section>
-<section id="data-analysis-methods">
-<h2>Data analysis methods<a class="headerlink" href="#data-analysis-methods" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Encoding</p>
-<ul>
-<li><p>GLM</p>
-<ul>
-<li><p>Design matrix</p></li>
-<li><p>Convolution and filtering</p></li>
-<li><p>How to deal with RT</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Decoding (MVPA)</p>
-<ul>
-<li><p><a class="reference external" href="http://www.pymvpa.org/">pyMVPA</a></p></li>
-<li><p><a class="reference external" href="https://brainiak.org/">Brainiak</a></p></li>
-</ul>
-</li>
-<li><p>RSA</p>
-<ul>
-<li><p><a class="reference external" href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003553">One example toolbox</a></p></li>
-</ul>
-</li>
-<li><p>Intersubject synchronization</p></li>
-<li><p>Latent state discovery</p></li>
-</ul>
-</section>
-<section id="visualization">
-<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="data-sharing-finding">
-<h2>Data sharing/finding<a class="headerlink" href="#data-sharing-finding" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://openneuro.org/">Openneuro</a></p></li>
-<li><p><a class="reference external" href="https://neurovault.org/">Neurovault</a></p></li>
-<li><p><a class="reference external" href="https://neurosynth.org/">Neurosynth</a>
-<a class="reference external" href="https://compose.neurosynth.org/">Neurosynth Compose</a></p></li>
-<li><p><a class="reference external" href="https://neuroquery.org/">Neuroquery</a></p></li>
-</ul>
-</section>
-<section id="getting-help">
-<h2>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://neurostars.org/">Neurostars</a></p></li>
-</ul>
-</section>
-<section id="resources">
-<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://dartbrains.org/content/intro.html">https://dartbrains.org/content/intro.html</a><br />
-<a class="reference external" href="https://naturalistic-data.org/content/intro.html">https://naturalistic-data.org/content/intro.html</a><br />
-<a class="reference external" href="https://mriquestions.com/">https://mriquestions.com/</a><br />
-<a class="reference external" href="https://miykael.github.io/nipype_tutorial/">https://miykael.github.io/nipype_tutorial/</a><br />
-<a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/">https://carpentries-incubator.github.io/SDC-BIDS-sMRI/</a></p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="data-visualization">
+<h1>Data visualization<a class="headerlink" href="#data-visualization" title="Permalink to this heading">#</a></h1>
+<p>Install <code class="docutils literal notranslate"><span class="pre">fsleyes</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>fsleyes
+</pre></div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -543,43 +405,12 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Intro To fMRI</p>
-      </div>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mr-basics">MR Basics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-organization">Data Organization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control">Quality control</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-analysis-methods">Data analysis methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sharing-finding">Data sharing/finding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting help</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

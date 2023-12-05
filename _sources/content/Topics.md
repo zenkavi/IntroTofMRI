@@ -63,6 +63,7 @@
 - [Openneuro](https://openneuro.org/)
 - [Neurovault](https://neurovault.org/)
 - [Neurosynth](https://neurosynth.org/)
+  [Neurosynth Compose](https://compose.neurosynth.org/)
 - [Neuroquery](https://neuroquery.org/)
 
 ## Getting help
