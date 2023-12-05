@@ -1,3 +1,16 @@
 jupyter-book
 matplotlib
 numpy
+pandas
+scipy
+seaborn
+nibabel
+nilearn
+nltools
+nipype
+hypertools
+networkx
+scikit-learn
+pynv
+nipype
+pybids
