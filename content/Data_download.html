@@ -365,6 +365,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-datalad">Install <code class="docutils literal notranslate"><span class="pre">datalad</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datalad-through-python">Datalad through Python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data-for-the-course">Download data for the course</a></li>
 </ul>
@@ -382,6 +383,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-download">
 <h1>Data download<a class="headerlink" href="#data-download" title="Permalink to this heading">#</a></h1>
+<section id="install-datalad">
+<h2>Install <code class="docutils literal notranslate"><span class="pre">datalad</span></code><a class="headerlink" href="#install-datalad" title="Permalink to this heading">#</a></h2>
 <p>In a Terminal window (or however you prefer interacting with your shell) install required software to download data through <code class="docutils literal notranslate"><span class="pre">datalad</span></code>. Below we install <code class="docutils literal notranslate"><span class="pre">git-annex</span></code> through Homebrew and <code class="docutils literal notranslate"><span class="pre">datalad</span></code> through pip</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt; brew install git-annex
 
@@ -412,6 +415,7 @@ install<span class="o">(</span>ok<span class="o">)</span>:<span class="w"> </spa
 nothing to save, working tree clean
 </pre></div>
 </div>
+</section>
 <section id="datalad-through-python">
 <h2>Datalad through Python<a class="headerlink" href="#datalad-through-python" title="Permalink to this heading">#</a></h2>
 <p>You can also interact with <code class="docutils literal notranslate"><span class="pre">datalad</span></code> directly through Python. Make sure you have installed the packages listed in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p>
@@ -422,15 +426,15 @@ nothing to save, working tree clean
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">datalad.api</span> <span class="k">as</span> <span class="nn">dl</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">localizer_path</span> <span class="o">=</span> <span class="s1">&#39;/Users/zenkavi/Documents/RangelLab/IntroTofMRI/data/Localizer&#39;</span>
-
-<span class="n">dl</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;https://gin.g-node.org/ljchang/Localizer&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">localizer_path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset(&#39;/Users/zenkavi/Documents/RangelLab/IntroTofMRI/data/Localizer&#39;)
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">localizer_path</span> <span class="o">=</span> <span class="s1">&#39;/Users/zenkavi/Documents/RangelLab/IntroTofMRI/data/Localizer&#39;</span>
+
+<span class="n">dl</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;https://gin.g-node.org/ljchang/Localizer&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">localizer_path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -442,12 +446,6 @@ nothing to save, working tree clean
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">localizer_path</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">status</span><span class="p">(</span><span class="n">annex</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1794 annex&#39;d files (0.0 B/42.1 GB present/total size)
-nothing to save, working tree clean
 </pre></div>
 </div>
 </div>
@@ -467,18 +465,6 @@ nothing to save, working tree clean
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-S01/.DS_Store (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-S01/anat/sub-S01_T1w.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-S01/func/sub-S01_task-localizer_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-S01 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
-action summary:
-  get (ok: 4)
-action summary:
-  get (notneeded: 3)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -486,31 +472,6 @@ action summary:
 <span class="n">file_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">[:</span><span class="mi">20</span><span class="p">]:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/.DS_Store (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_desc-brain_mask.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_desc-preproc_T1w.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_dseg.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_from-MNI152NLin2009cAsym_to-T1w_mode-image_xfm.h5 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_label-CSF_probseg.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_label-GM_probseg.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_label-WM_probseg.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_space-MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_space-MNI152NLin2009cAsym_dseg.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_space-MNI152NLin2009cAsym_label-CSF_probseg.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_space-MNI152NLin2009cAsym_label-GM_probseg.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/anat/sub-S01_space-MNI152NLin2009cAsym_label-WM_probseg.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/func/sub-S01_task-localizer_space-MNI152NLin2009cAsym_boldref.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/func/sub-S01_task-localizer_space-MNI152NLin2009cAsym_desc-brain_mask.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01/func/sub-S01_task-localizer_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from origin...]
-<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): derivatives/fmriprep/sub-S01 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
-action summary:
-  get (ok: 19)
 </pre></div>
 </div>
 </div>
@@ -564,6 +525,7 @@ action summary:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-datalad">Install <code class="docutils literal notranslate"><span class="pre">datalad</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datalad-through-python">Datalad through Python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data-for-the-course">Download data for the course</a></li>
 </ul>

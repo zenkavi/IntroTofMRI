@@ -62,8 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Visualization';</script>
-    <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/Visualization.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Visualization_tools';</script>
+    <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/Visualization_tools.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -241,7 +241,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/zenkavi/IntroTofMRI/issues/new?title=Issue%20on%20page%20%2Fcontent/Visualization.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/zenkavi/IntroTofMRI/issues/new?title=Issue%20on%20page%20%2Fcontent/Visualization_tools.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -271,7 +271,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/content/Visualization.ipynb" target="_blank"
+      <li><a href="../_sources/content/Visualization_tools.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -342,7 +342,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -358,6 +360,19 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fsleyes">FSLEyes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-fsleyes">Opening FSLEyes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nilearn-plotting">Nilearn.plotting</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -369,10 +384,33 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-visualization">
 <h1>Data visualization<a class="headerlink" href="#data-visualization" title="Permalink to this heading">#</a></h1>
-<p>Install <code class="docutils literal notranslate"><span class="pre">fsleyes</span></code></p>
+<p>There are different options to visualize images.</p>
+<ul class="simple">
+<li><p>For quick click and view <a class="reference external" href="https://mangoviewer.com/mango.html">Mango</a> is a nice option.</p></li>
+<li><p>For surface-based analyses Freesurfer’s <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/OutputData_freeview">Freeview</a> is very capable.</p></li>
+<li><p>For publication quality (programatically reproducible) images you’ll likely use <a class="reference external" href="https://nilearn.github.io/stable/plotting/index.html"><code class="docutils literal notranslate"><span class="pre">nilearn.plotting</span></code></a> or <a class="reference external" href="https://open.win.ox.ac.uk/pages/fsl/fsleyes/fsleyes/userdoc/install.html"><code class="docutils literal notranslate"><span class="pre">fsleyes</span></code></a>.</p></li>
+</ul>
+<section id="fsleyes">
+<h2>FSLEyes<a class="headerlink" href="#fsleyes" title="Permalink to this heading">#</a></h2>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h3>
+<p>Note this installation recommended <em>only</em> if you’re comfortable creating and managing python virtual environments. If not, visit <a class="reference external" href="https://open.win.ox.ac.uk/pages/fsl/fsleyes/fsleyes/userdoc/install.html">FSLEyes documentation</a> on more detailed instructions</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>fsleyes
 </pre></div>
 </div>
+</section>
+<section id="opening-fsleyes">
+<h3>Opening FSLEyes<a class="headerlink" href="#opening-fsleyes" title="Permalink to this heading">#</a></h3>
+<p>After installation open a Terminal window and type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">fsleyes</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> will run <code class="docutils literal notranslate"><span class="pre">fsleyes</span></code> in the background so you can still access the CLI.</p>
+</section>
+</section>
+<section id="nilearn-plotting">
+<h2>Nilearn.plotting<a class="headerlink" href="#nilearn-plotting" title="Permalink to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -411,6 +449,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fsleyes">FSLEyes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-fsleyes">Opening FSLEyes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nilearn-plotting">Nilearn.plotting</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
