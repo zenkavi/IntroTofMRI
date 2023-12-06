@@ -7,14 +7,17 @@ parts:
 - caption: Overview
   chapters:
   - file: content/Topics
+  # - file: content/Data_download
 # - caption: MR Basics
   # chapters:
-    # - file: content/MRSignal
-    # - file: content/ImageCreation
-    # - file: content/ImageCleanup
+    # - file: content/MRI_magic
 # - caption: Data Organization
+  # chapters:
+    # - file: content/Neuroimaging_data
 # - caption: Preprocessing
 # - caption: Quality Control
 # - caption: Data Analysis Methods
 # - caption: Visualization
+  # chapters:
+    # - file: content/Visualization_tools
 # - caption: Data sharing and finding
