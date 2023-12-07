@@ -11,12 +11,26 @@ parts:
 # - caption: MR Basics
   # chapters:
     # - file: content/MRI_magic
-# - caption: Data Organization
+    # - file: content/Glossary
+# - caption: Data Structure and Organization
   # chapters:
+    # - file: content/File_types
     # - file: content/Neuroimaging_data
+    # - file: content/BIDS
+    # - file: content/Defacing
 # - caption: Preprocessing
-# - caption: Quality Control
-# - caption: Data Analysis Methods
+  # chapters:
+    # - file: content/Structural_preprocessing
+    # - file: content/Functional_preprocessing
+    # - file: content/fmriprep
+    # - file: content/Quality_control
+# - caption: Data Analysis
+  # chapters:
+    # - file: content/Encoding_models
+    # - file: content/Decoding
+    # - file: content/RSA
+    # - file: content/Intersubject_synchronization
+    # - file: content/Latent_state_discovery
 # - caption: Visualization
   # chapters:
     # - file: content/Visualization_tools

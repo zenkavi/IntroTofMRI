@@ -2,29 +2,24 @@
 
 ## MR Basics
 
-- What is the measured signal  
-- How is the image created  
-  - [sMRI Acquisition and Modalities](https://carpentries-incubator.github.io/SDC-BIDS-sMRI/01-Image_Modalities/index.html)  
-  - [MRI questions Making an Image](https://mriquestions.com/hellipmaking-an-image.html)  
+- MRI_magic: What is the measured signal  
+- From signal to image
 - MR Glossary
-	- T1, T2
-	- TR, TE
-	- Gradient echo, spin echo
-	- b0, phase and magnitude encoding
 
-## Data Organization
+## Data Structure and Organization
 
 - Dicom to Nifti
+- Interacting with neuroimaging data
 - BIDS
 - Defacing
 
 ## Preprocessing
 
 - Structural images
-  - [sMRI Clean Up](https://carpentries-incubator.github.io/SDC-BIDS-sMRI/02-Image_Cleanup/index.html)
-	- [sMRI Spatial Normalization](https://carpentries-incubator.github.io/SDC-BIDS-sMRI/03-Image_Spatial_Normalization/index.html)
-	- [sMRI Segmentation and Parcellation](https://carpentries-incubator.github.io/SDC-BIDS-sMRI/04-Image_Quantification/index.html)
-	- [sMRI Quality Control](https://carpentries-incubator.github.io/SDC-BIDS-sMRI/05-Image_QC/index.html)
+  - Intensity correction (bias (field) correction, inhomogeniety correction)
+  - Brain extraction
+	- Spatial Normalization
+	- Segmentation and Parcellation
 - Functional images
   - Distortion correction
   - Motion estimates
@@ -35,13 +30,11 @@
 - How to do all of this: `fmriprep`
   - Steps it runs
   - Outputs
+- Quality control 
+  - MRI-QC: sMRI Quality Control  
+  - QC of fmriprep outputs
 
-## Quality control 
-
-- MRI-QC: sMRI Quality Control  
-- QC of fmriprep outputs
-
-## Data analysis methods
+## Data analysis 
 
 - Encoding
   - GLM
@@ -63,7 +56,7 @@
 - [Openneuro](https://openneuro.org/)
 - [Neurovault](https://neurovault.org/)
 - [Neurosynth](https://neurosynth.org/)
-  [Neurosynth Compose](https://compose.neurosynth.org/)
+  - [Neurosynth Compose](https://compose.neurosynth.org/)
 - [Neuroquery](https://neuroquery.org/)
 
 ## Getting help
@@ -77,3 +70,4 @@ https://naturalistic-data.org/content/intro.html
 https://mriquestions.com/  
 https://miykael.github.io/nipype_tutorial/  
 https://carpentries-incubator.github.io/SDC-BIDS-sMRI/  
+https://lukas-snoek.com/NI-edu/
