@@ -1,0 +1,2207 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>ROI Analysis &#8212; Intro to fMRI</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/ROI_analysis';</script>
+    <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/ROI_analysis.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Intro to fMRI - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Intro to fMRI - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Intro To fMRI
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Topics.html">Topics</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zenkavi/IntroTofMRI" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zenkavi/IntroTofMRI/issues/new?title=Issue%20on%20page%20%2Fcontent/ROI_analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/ROI_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ROI Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ROI Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nilearn-computing-an-roi-mask-manually">Nilearn - computing an ROI mask manually</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nilearn-create-spherical-mask">Nilearn - create spherical mask</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#neurosynth-functional-roi">Neurosynth - functional ROI</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="roi-analysis">
+<h1>ROI Analysis<a class="headerlink" href="#roi-analysis" title="Permalink to this heading">#</a></h1>
+<p>Conceptual overview <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2555436/">“Poldrack RA. Region of interest analysis for fMRI. Soc Cogn Affect Neurosci. 2007 Mar;2(1):67-70. doi: 10.1093/scan/nsm006. PMID: 18985121; PMCID: PMC2555436.”</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="nilearn-computing-an-roi-mask-manually">
+<h1>Nilearn - computing an ROI mask manually<a class="headerlink" href="#nilearn-computing-an-roi-mask-manually" title="Permalink to this heading">#</a></h1>
+<p>Below is the from <a class="reference external" href="https://nilearn.github.io/stable/auto_examples/06_manipulating_images/plot_roi_extraction.html">this tutorial</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.maskers</span> <span class="kn">import</span> <span class="n">NiftiMasker</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cut in x-direction</span>
+<span class="n">sagittal</span> <span class="o">=</span> <span class="o">-</span><span class="mi">25</span>
+<span class="c1"># cut in y-direction</span>
+<span class="n">coronal</span> <span class="o">=</span> <span class="o">-</span><span class="mi">37</span>
+<span class="c1"># cut in z-direction</span>
+<span class="n">axial</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+
+<span class="c1"># coordinates displaying should be prepared as a list</span>
+<span class="n">cut_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">sagittal</span><span class="p">,</span> <span class="n">coronal</span><span class="p">,</span> <span class="n">axial</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We load data from nilearn by import datasets</span>
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="c1"># First, we fetch single subject specific data with haxby datasets: to have</span>
+<span class="c1"># anatomical image, EPI images and masks images</span>
+<span class="n">haxby_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">fetch_haxby</span><span class="p">()</span>
+
+<span class="c1"># print basic information on the dataset</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;First subject anatomical nifti image (3D) located is &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;at: </span><span class="si">{</span><span class="n">haxby_dataset</span><span class="o">.</span><span class="n">anat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;First subject functional nifti image (4D) is located &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;at: </span><span class="si">{</span><span class="n">haxby_dataset</span><span class="o">.</span><span class="n">func</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Labels of haxby dataset (text file) is located &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;at: </span><span class="si">{</span><span class="n">haxby_dataset</span><span class="o">.</span><span class="n">session_target</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Second, load the labels stored in a text file into array using pandas</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">session_target</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">haxby_dataset</span><span class="o">.</span><span class="n">session_target</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="c1"># Now, we have the labels and will be useful while computing student&#39;s t-test</span>
+<span class="n">haxby_labels</span> <span class="o">=</span> <span class="n">session_target</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset created in /Users/zenkavi/nilearn_data/haxby2001
+
+Downloading data from https://www.nitrc.org/frs/download.php/7868/mask.nii.gz ...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ...done. (0 seconds, 0 min)
+ ...done. (0 seconds, 0 min)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data from http://data.pymvpa.org/datasets/haxby2001/MD5SUMS ...
+Downloading data from http://data.pymvpa.org/datasets/haxby2001/subj2-2010.01.14.tar.gz ...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloaded 290562048 of 291168628 bytes (99.8%,    1.1s remaining) ...done. (504 seconds, 8 min)
+Extracting data from /Users/zenkavi/nilearn_data/haxby2001/def37a305edfda829916fa14c9ea08f8/subj2-2010.01.14.tar.gz...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First subject anatomical nifti image (3D) located is at: /Users/zenkavi/nilearn_data/haxby2001/subj2/anat.nii.gz
+First subject functional nifti image (4D) is located at: /Users/zenkavi/nilearn_data/haxby2001/subj2/bold.nii.gz
+Labels of haxby dataset (text file) is located at: /Users/zenkavi/nilearn_data/haxby2001/subj2/labels.txt
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.. done.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Smooth the data using image processing module from nilearn</span>
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span>
+
+<span class="c1"># Functional data</span>
+<span class="n">fmri_filename</span> <span class="o">=</span> <span class="n">haxby_dataset</span><span class="o">.</span><span class="n">func</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># smoothing: first argument as functional data filename and smoothing value</span>
+<span class="c1"># (integer) in second argument. Output returns in Nifti image.</span>
+<span class="n">fmri_img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">smooth_img</span><span class="p">(</span><span class="n">fmri_filename</span><span class="p">,</span> <span class="n">fwhm</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Visualize the mean of the smoothed EPI image using plotting function</span>
+<span class="c1"># `plot_epi`</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_epi</span>
+
+<span class="c1"># First, compute the voxel-wise mean of smooth EPI image (first argument) using</span>
+<span class="c1"># image processing module `image`</span>
+<span class="n">mean_img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">)</span>
+<span class="c1"># Second, we visualize the mean image with coordinates positioned manually</span>
+<span class="n">plot_epi</span><span class="p">(</span><span class="n">mean_img</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Smoothed mean EPI&quot;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="n">cut_coords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays._slicers.OrthoSlicer at 0x282e7a2c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/dca8d3c74145a4c12a01321d41b42eaab3544db0a7bca1bde53f3ae1e14b34a4.png" src="../_images/dca8d3c74145a4c12a01321d41b42eaab3544db0a7bca1bde53f3ae1e14b34a4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">get_data</span>
+
+<span class="n">fmri_data</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">)</span>
+<span class="c1"># number of voxels being x*y*z, samples in 4th dimension</span>
+<span class="n">fmri_data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(40, 64, 64, 1452)
+</pre></div>
+</div>
+</div>
+</div>
+<p>What is the structure of <code class="docutils literal notranslate"><span class="pre">fmri_data</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[[3.82783949e-01, 3.15722167e-01, 1.93227097e-01, ...,
+          8.88536274e-01, 1.79597533e+00, 9.63508844e-01],
+         [4.48387653e-01, 3.57153237e-01, 2.62456715e-01, ...,
+          3.60178852e+00, 6.74118948e+00, 3.68342948e+00],
+         [3.93492043e-01, 3.94156963e-01, 3.09761494e-01, ...,
+          5.81759548e+00, 9.12431622e+00, 5.42240191e+00],
+         ...,
+         [5.35980606e+00, 3.80976176e+00, 4.74490786e+00, ...,
+          3.10985953e-01, 3.99323791e-01, 4.01381314e-01],
+         [2.98107243e+00, 2.08783507e+00, 1.77438378e+00, ...,
+          1.66237265e-01, 2.97099471e-01, 2.51354843e-01],
+         [6.65085733e-01, 4.57098573e-01, 2.93900251e-01, ...,
+          3.76221165e-02, 1.17603317e-01, 6.04814105e-02]],
+
+        [[1.31131351e+00, 1.08614349e+00, 7.85015523e-01, ...,
+          7.95306444e-01, 1.51361012e+00, 1.36506402e+00],
+         [1.50369680e+00, 1.22958148e+00, 1.05018675e+00, ...,
+          3.34878469e+00, 5.61668968e+00, 4.88832569e+00],
+         [1.35602236e+00, 1.34273350e+00, 1.25996661e+00, ...,
+          5.38959694e+00, 7.18700600e+00, 6.15795422e+00],
+         ...,
+         [5.05289412e+00, 3.34610987e+00, 3.93622875e+00, ...,
+          1.17482305e+00, 1.46684599e+00, 1.39056730e+00],
+         [2.69950986e+00, 1.84920120e+00, 1.54266369e+00, ...,
+          6.56176567e-01, 1.14287925e+00, 8.73928249e-01],
+         [5.98949850e-01, 4.17709887e-01, 2.66475528e-01, ...,
+          1.52131811e-01, 4.50942189e-01, 2.13154376e-01]],
+
+        [[1.30356431e+00, 1.11071289e+00, 1.15074229e+00, ...,
+          1.18510938e+00, 9.06093538e-01, 1.51284337e+00],
+         [1.46444476e+00, 1.25407755e+00, 1.50771391e+00, ...,
+          4.77833176e+00, 3.91909814e+00, 5.72687197e+00],
+         [1.47263956e+00, 1.33474159e+00, 1.85500634e+00, ...,
+          6.82124758e+00, 6.20036840e+00, 7.56003141e+00],
+         ...,
+         [5.13761187e+00, 3.66389060e+00, 4.14075661e+00, ...,
+          1.59307170e+00, 1.66502178e+00, 1.35509956e+00],
+         [2.54315257e+00, 1.60328436e+00, 1.71436250e+00, ...,
+          1.04404604e+00, 1.45370841e+00, 8.68082106e-01],
+         [5.44322312e-01, 3.23886275e-01, 3.16613644e-01, ...,
+          2.89925963e-01, 5.81473291e-01, 2.22079009e-01]],
+
+        ...,
+
+        [[1.32037985e+00, 9.56972361e-01, 1.08549190e+00, ...,
+          1.40075898e+00, 1.26620460e+00, 1.36796033e+00],
+         [4.86104774e+00, 3.74703479e+00, 4.19443655e+00, ...,
+          1.44224358e+00, 1.88214862e+00, 1.51088965e+00],
+         [6.14349842e+00, 5.49237823e+00, 5.94529152e+00, ...,
+          1.93893516e+00, 2.36415052e+00, 2.08765793e+00],
+         ...,
+         [6.78347778e+00, 9.27147770e+00, 8.66222286e+00, ...,
+          9.75998700e-01, 1.28482163e+00, 1.08176482e+00],
+         [5.10171890e+00, 7.68525743e+00, 8.03926468e+00, ...,
+          8.83355498e-01, 1.00111461e+00, 6.41781271e-01],
+         [3.14941955e+00, 5.58721304e+00, 6.35571337e+00, ...,
+          2.56861120e-01, 2.73403108e-01, 1.60623163e-01]],
+
+        [[1.29108083e+00, 7.94888735e-01, 1.03442216e+00, ...,
+          9.06828165e-01, 1.46971262e+00, 1.64632976e+00],
+         [4.84772301e+00, 3.24001527e+00, 4.23302126e+00, ...,
+          1.21526504e+00, 1.95819759e+00, 1.61872089e+00],
+         [6.54656363e+00, 5.19245100e+00, 6.59394455e+00, ...,
+          1.68082452e+00, 2.23871922e+00, 1.78407645e+00],
+         ...,
+         [5.59648371e+00, 6.81474733e+00, 6.27363300e+00, ...,
+          1.26658714e+00, 1.82675195e+00, 1.21403837e+00],
+         [4.02776814e+00, 5.67752028e+00, 6.30778408e+00, ...,
+          8.66106272e-01, 1.48488474e+00, 7.79023170e-01],
+         [2.24322057e+00, 3.92087293e+00, 5.14102554e+00, ...,
+          2.30404571e-01, 4.15693969e-01, 1.97242424e-01]],
+
+        [[1.40691566e+00, 1.02208734e+00, 8.68270159e-01, ...,
+          2.14068249e-01, 4.43096489e-01, 4.98533010e-01],
+         [5.58949995e+00, 3.79396796e+00, 4.02810669e+00, ...,
+          3.32850844e-01, 5.77207088e-01, 4.82363105e-01],
+         [8.27700901e+00, 4.91313219e+00, 7.85458708e+00, ...,
+          4.64927942e-01, 6.37810171e-01, 4.86273110e-01],
+         ...,
+         [1.52257180e+00, 1.73748267e+00, 1.57297325e+00, ...,
+          1.52898431e+00, 1.68185079e+00, 1.24746537e+00],
+         [1.07190418e+00, 1.46759331e+00, 1.62884760e+00, ...,
+          9.84684169e-01, 1.36753416e+00, 1.03094804e+00],
+         [5.77166736e-01, 9.98023033e-01, 1.33404410e+00, ...,
+          2.53961772e-01, 3.80492538e-01, 2.81935036e-01]]],
+
+
+       [[[1.21621776e+00, 1.04607689e+00, 8.40986133e-01, ...,
+          1.29018044e+00, 2.06843305e+00, 1.43209732e+00],
+         [1.43735683e+00, 1.20768559e+00, 1.05705976e+00, ...,
+          5.04628944e+00, 7.38095570e+00, 5.50943661e+00],
+         [1.29354727e+00, 1.29483080e+00, 1.13254595e+00, ...,
+          7.12606668e+00, 8.61410236e+00, 8.18741703e+00],
+         ...,
+         [6.55407858e+00, 5.57991409e+00, 6.31400633e+00, ...,
+          9.65134442e-01, 1.22578669e+00, 1.46026850e+00],
+         [3.73068357e+00, 3.09471464e+00, 2.87134933e+00, ...,
+          5.61962128e-01, 9.53001201e-01, 9.61302817e-01],
+         [8.47280800e-01, 6.79873347e-01, 5.57912171e-01, ...,
+          1.66442469e-01, 3.86284977e-01, 2.67093569e-01]],
+
+        [[4.24062824e+00, 3.63009191e+00, 3.13316512e+00, ...,
+          1.17181277e+00, 1.55792940e+00, 1.50644124e+00],
+         [4.91659164e+00, 4.17910814e+00, 3.96031189e+00, ...,
+          4.54631281e+00, 5.86168242e+00, 5.48101330e+00],
+         [4.51162624e+00, 4.42203760e+00, 4.39596319e+00, ...,
+          6.20064211e+00, 7.62848520e+00, 7.01164389e+00],
+         ...,
+         [5.95693064e+00, 4.76131344e+00, 5.49143648e+00, ...,
+          3.69810033e+00, 4.52464104e+00, 4.96117115e+00],
+         [3.08392286e+00, 2.69955230e+00, 2.31931067e+00, ...,
+          2.25108385e+00, 3.63809299e+00, 3.30571151e+00],
+         [6.71322703e-01, 6.14849865e-01, 4.25630331e-01, ...,
+          6.70315206e-01, 1.46509767e+00, 9.42439556e-01]],
+
+        [[4.45359564e+00, 3.84397769e+00, 3.87087297e+00, ...,
+          1.52933967e+00, 1.02269745e+00, 1.45939040e+00],
+         [5.03891087e+00, 4.35442686e+00, 4.99900436e+00, ...,
+          6.08993483e+00, 4.23482800e+00, 5.56050110e+00],
+         [5.00604486e+00, 4.48823118e+00, 5.99738407e+00, ...,
+          8.50181198e+00, 6.30456209e+00, 7.38548136e+00],
+         ...,
+         [5.59050322e+00, 4.84998512e+00, 5.02640915e+00, ...,
+          5.14278698e+00, 5.30050278e+00, 4.80025339e+00],
+         [2.93862557e+00, 2.48136806e+00, 2.24685216e+00, ...,
+          3.52833724e+00, 4.57450533e+00, 3.25189924e+00],
+         [6.54101610e-01, 5.58284104e-01, 4.45958674e-01, ...,
+          1.13064969e+00, 1.81967735e+00, 9.73175585e-01]],
+
+        ...,
+
+        [[1.50873256e+00, 1.88940763e+00, 1.31989324e+00, ...,
+          5.79364061e+00, 4.67927647e+00, 6.05531216e+00],
+         [5.54889107e+00, 7.04592323e+00, 5.01393604e+00, ...,
+          6.04475117e+00, 6.35241699e+00, 6.39165401e+00],
+         [6.90627098e+00, 8.93836021e+00, 6.72756529e+00, ...,
+          7.49344873e+00, 7.31103182e+00, 7.57183456e+00],
+         ...,
+         [8.77284622e+00, 1.07122545e+01, 1.02834024e+01, ...,
+          3.70327425e+00, 4.24662352e+00, 4.47555351e+00],
+         [7.16884756e+00, 9.01587772e+00, 1.04480629e+01, ...,
+          3.16896534e+00, 3.24927282e+00, 2.89733982e+00],
+         [4.58395815e+00, 6.19462252e+00, 7.79533863e+00, ...,
+          8.97829592e-01, 8.77556860e-01, 7.46764362e-01]],
+
+        [[1.53218532e+00, 1.46774757e+00, 1.26365411e+00, ...,
+          4.08911753e+00, 4.80403805e+00, 6.08047533e+00],
+         [5.53441477e+00, 5.53192711e+00, 5.15466404e+00, ...,
+          5.26766729e+00, 6.18020010e+00, 6.03340054e+00],
+         [6.63276291e+00, 7.44471216e+00, 7.99080801e+00, ...,
+          6.44907761e+00, 6.76676893e+00, 6.54851007e+00],
+         ...,
+         [7.67122746e+00, 7.65810728e+00, 8.26492786e+00, ...,
+          4.31374407e+00, 5.72270679e+00, 4.93590164e+00],
+         [6.32284498e+00, 6.35367250e+00, 8.86842442e+00, ...,
+          3.03989410e+00, 4.56476593e+00, 3.20137095e+00],
+         [4.15990591e+00, 4.36983538e+00, 7.04470301e+00, ...,
+          8.16029251e-01, 1.26078582e+00, 8.11461687e-01]],
+
+        [[1.68451607e+00, 1.39919746e+00, 1.22705221e+00, ...,
+          1.00124919e+00, 1.41012275e+00, 1.73551655e+00],
+         [6.15058851e+00, 4.95962334e+00, 5.18311357e+00, ...,
+          1.44219029e+00, 1.79950070e+00, 1.71556842e+00],
+         [7.51188278e+00, 5.72484350e+00, 8.76246357e+00, ...,
+          1.77120376e+00, 1.93561864e+00, 1.81379521e+00],
+         ...,
+         [2.16027141e+00, 2.00082088e+00, 2.19324541e+00, ...,
+          5.25186253e+00, 5.29077196e+00, 4.88022804e+00],
+         [1.78384566e+00, 1.67559028e+00, 2.38111305e+00, ...,
+          3.54496217e+00, 4.24884033e+00, 3.91791391e+00],
+         [1.19539773e+00, 1.15551925e+00, 1.93129158e+00, ...,
+          9.35656130e-01, 1.16591370e+00, 1.05971181e+00]]],
+
+
+       [[[1.64132679e+00, 1.47672582e+00, 1.91474485e+00, ...,
+          1.80669904e+00, 2.27071261e+00, 2.00212193e+00],
+         [1.92619431e+00, 1.72417319e+00, 2.16323280e+00, ...,
+          6.60577679e+00, 7.72880077e+00, 7.56082439e+00],
+         [1.78200686e+00, 1.71500242e+00, 2.01567960e+00, ...,
+          7.99855328e+00, 7.56305552e+00, 1.05695372e+01],
+         ...,
+         [9.95302582e+00, 9.20598602e+00, 9.55614376e+00, ...,
+          1.34625137e+00, 1.56049109e+00, 2.48821163e+00],
+         [5.98713779e+00, 5.55252695e+00, 5.14098930e+00, ...,
+          9.71364975e-01, 1.39431405e+00, 1.82285357e+00],
+         [1.40911841e+00, 1.29197347e+00, 1.09614635e+00, ...,
+          4.10092086e-01, 5.93236566e-01, 6.14181817e-01]],
+
+        [[5.98242760e+00, 5.20907211e+00, 6.50276804e+00, ...,
+          1.85207856e+00, 1.63920987e+00, 1.92651808e+00],
+         [6.91232109e+00, 6.04618979e+00, 7.42079639e+00, ...,
+          6.54258204e+00, 5.97963142e+00, 7.03522730e+00],
+         [6.39106846e+00, 5.95579529e+00, 7.14292097e+00, ...,
+          7.26300478e+00, 7.25419140e+00, 8.68371296e+00],
+         ...,
+         [8.58242226e+00, 7.74660826e+00, 7.56509542e+00, ...,
+          5.15173244e+00, 5.75995827e+00, 8.13166142e+00],
+         [4.75281143e+00, 4.71755266e+00, 3.74394250e+00, ...,
+          3.88895082e+00, 5.14871073e+00, 6.14386606e+00],
+         [1.07575095e+00, 1.11645687e+00, 7.69843698e-01, ...,
+          1.64215529e+00, 2.18070459e+00, 2.15999484e+00]],
+
+        [[7.01912498e+00, 5.94819355e+00, 6.20415735e+00, ...,
+          1.94100201e+00, 1.43505907e+00, 1.69667757e+00],
+         [7.86216307e+00, 6.61994410e+00, 7.43058443e+00, ...,
+          7.41423798e+00, 5.39924145e+00, 6.14147711e+00],
+         [7.41216993e+00, 6.46294832e+00, 8.04815197e+00, ...,
+          9.58072567e+00, 6.80185890e+00, 7.27362776e+00],
+         ...,
+         [7.95964432e+00, 7.55371904e+00, 6.36324930e+00, ...,
+          7.12533760e+00, 7.14310789e+00, 7.60720062e+00],
+         [4.54582500e+00, 4.43386841e+00, 3.17837214e+00, ...,
+          5.77170706e+00, 6.17453718e+00, 5.93618250e+00],
+         [1.04956520e+00, 1.06377590e+00, 6.89156234e-01, ...,
+          2.44576097e+00, 2.48874354e+00, 2.22568870e+00]],
+
+        ...,
+
+        [[1.74957311e+00, 2.92205071e+00, 1.67430604e+00, ...,
+          1.06112375e+01, 8.34222412e+00, 1.18373632e+01],
+         [6.41950560e+00, 1.07377396e+01, 6.33963680e+00, ...,
+          1.09288740e+01, 9.38537502e+00, 1.18772745e+01],
+         [7.93603802e+00, 1.28860502e+01, 8.43234348e+00, ...,
+          1.18725576e+01, 8.41542053e+00, 1.15673618e+01],
+         ...,
+         [1.20767937e+01, 1.41158028e+01, 1.35748873e+01, ...,
+          7.42601538e+00, 7.22296000e+00, 9.98431683e+00],
+         [1.11016808e+01, 1.24855366e+01, 1.36193771e+01, ...,
+          5.72225809e+00, 5.30916405e+00, 7.10502291e+00],
+         [7.40307713e+00, 9.29402733e+00, 1.01900330e+01, ...,
+          1.51963770e+00, 1.39272761e+00, 1.86826539e+00]],
+
+        [[1.74060643e+00, 2.48018122e+00, 1.74348021e+00, ...,
+          8.06295300e+00, 7.02933073e+00, 1.01831360e+01],
+         [6.20476341e+00, 9.06747627e+00, 6.91658211e+00, ...,
+          9.62177181e+00, 8.00496387e+00, 9.84786129e+00],
+         [7.32107830e+00, 1.08377762e+01, 1.00420322e+01, ...,
+          1.01540518e+01, 7.76210070e+00, 1.02619629e+01],
+         ...,
+         [9.85914516e+00, 1.08310928e+01, 1.12273369e+01, ...,
+          7.08948612e+00, 8.22119522e+00, 1.03840370e+01],
+         [8.83588886e+00, 9.47254753e+00, 1.15514574e+01, ...,
+          5.28513908e+00, 6.21612883e+00, 6.98486280e+00],
+         [5.91404104e+00, 6.99574661e+00, 9.34745121e+00, ...,
+          1.42491448e+00, 1.64155614e+00, 1.77526689e+00]],
+
+        [[1.84634173e+00, 2.15042400e+00, 1.95606816e+00, ...,
+          2.03579640e+00, 1.93740690e+00, 2.72932482e+00],
+         [6.48631763e+00, 7.73922682e+00, 7.68484926e+00, ...,
+          2.61910129e+00, 2.24177027e+00, 2.63660192e+00],
+         [7.44946623e+00, 8.89192677e+00, 1.10784578e+01, ...,
+          2.76995659e+00, 2.25711155e+00, 2.90187907e+00],
+         ...,
+         [2.66514325e+00, 2.90133595e+00, 3.01315093e+00, ...,
+          8.25821781e+00, 7.69856977e+00, 9.73334694e+00],
+         [2.35853648e+00, 2.53522420e+00, 3.09097886e+00, ...,
+          6.16678715e+00, 6.17196989e+00, 7.68195868e+00],
+         [1.60054445e+00, 1.84941053e+00, 2.57663965e+00, ...,
+          1.68686545e+00, 1.64493096e+00, 2.06348944e+00]]],
+
+
+       ...,
+
+
+       [[[7.38578916e-01, 5.67479134e-01, 6.22005701e-01, ...,
+          5.49011135e+00, 5.16800642e+00, 6.26436949e+00],
+         [1.72946334e+00, 1.58596432e+00, 1.55175114e+00, ...,
+          7.73781538e+00, 5.49463701e+00, 7.40061569e+00],
+         [2.04528284e+00, 2.00145960e+00, 2.17650747e+00, ...,
+          1.07487259e+01, 7.25241613e+00, 9.53122044e+00],
+         ...,
+         [8.21504688e+00, 9.94745350e+00, 8.42691612e+00, ...,
+          1.09184322e+01, 1.09838209e+01, 1.57762194e+01],
+         [8.15030575e+00, 5.58276653e+00, 5.47103357e+00, ...,
+          8.49653912e+00, 8.52640629e+00, 1.19062767e+01],
+         [2.38184667e+00, 1.31102467e+00, 1.37051022e+00, ...,
+          2.29583955e+00, 2.36764646e+00, 3.12765074e+00]],
+
+        [[2.39187336e+00, 1.96966839e+00, 2.07937241e+00, ...,
+          4.96758175e+00, 4.44723797e+00, 5.53794670e+00],
+         [5.98453951e+00, 5.85383987e+00, 5.57563543e+00, ...,
+          6.72899437e+00, 5.30731010e+00, 6.14318848e+00],
+         [7.29211426e+00, 7.61581373e+00, 7.87903118e+00, ...,
+          7.91485167e+00, 7.11308765e+00, 7.40994072e+00],
+         ...,
+         [9.40189648e+00, 1.00057640e+01, 7.87822771e+00, ...,
+          1.11878643e+01, 1.11089268e+01, 1.38519516e+01],
+         [7.75356102e+00, 6.29322004e+00, 5.37571669e+00, ...,
+          8.89686012e+00, 7.78399563e+00, 9.83149433e+00],
+         [2.12414241e+00, 1.56175697e+00, 1.35664296e+00, ...,
+          2.39675498e+00, 2.01409817e+00, 2.55996251e+00]],
+
+        [[2.03226185e+00, 2.12082362e+00, 1.90584254e+00, ...,
+          5.59418011e+00, 4.50200510e+00, 6.20414734e+00],
+         [6.48384953e+00, 7.47648716e+00, 6.37822771e+00, ...,
+          6.88885784e+00, 5.66243315e+00, 6.18343306e+00],
+         [8.36874866e+00, 1.03240366e+01, 9.21295929e+00, ...,
+          8.96540356e+00, 8.60919666e+00, 7.15692043e+00],
+         ...,
+         [1.12158537e+01, 9.90172863e+00, 8.45717621e+00, ...,
+          1.15075035e+01, 1.15770235e+01, 1.14852371e+01],
+         [7.89589548e+00, 6.95824146e+00, 6.35783100e+00, ...,
+          9.29561710e+00, 8.51625633e+00, 9.47587681e+00],
+         [1.98273647e+00, 1.84723043e+00, 1.67817652e+00, ...,
+          2.49823880e+00, 2.21156979e+00, 2.57389688e+00]],
+
+        ...,
+
+        [[2.33707353e-01, 7.95089453e-02, 1.04035251e-01, ...,
+          7.29208517e+00, 6.68682003e+00, 6.18487549e+00],
+         [3.21003771e+00, 1.74259067e+00, 2.60445738e+00, ...,
+          9.78924084e+00, 8.98210335e+00, 7.17463255e+00],
+         [1.08336182e+01, 7.09347439e+00, 9.12986183e+00, ...,
+          1.15570898e+01, 9.99319553e+00, 7.45560980e+00],
+         ...,
+         [7.71411467e+00, 1.04031572e+01, 7.65962934e+00, ...,
+          1.00106974e+01, 1.00565948e+01, 9.80718231e+00],
+         [5.58353901e+00, 8.21784782e+00, 6.71081877e+00, ...,
+          6.24276447e+00, 6.58339453e+00, 5.88404131e+00],
+         [4.89019060e+00, 4.00215101e+00, 4.78371572e+00, ...,
+          1.49844146e+00, 1.59997368e+00, 1.33449471e+00]],
+
+        [[8.36751685e-02, 7.32132569e-02, 8.03551078e-02, ...,
+          6.25656271e+00, 5.90028524e+00, 5.24205160e+00],
+         [2.11275172e+00, 1.94341755e+00, 2.12306476e+00, ...,
+          7.99012184e+00, 7.62040854e+00, 5.83370590e+00],
+         [8.02134895e+00, 7.81977320e+00, 7.94077873e+00, ...,
+          8.80864143e+00, 7.65104675e+00, 6.14349556e+00],
+         ...,
+         [5.40525579e+00, 8.50304127e+00, 5.77662516e+00, ...,
+          6.83855057e+00, 7.29564428e+00, 5.81955385e+00],
+         [4.67394876e+00, 7.09267187e+00, 5.46111250e+00, ...,
+          4.29708481e+00, 5.04310083e+00, 3.96781301e+00],
+         [4.14420462e+00, 3.96527195e+00, 4.43952656e+00, ...,
+          1.01612198e+00, 1.26199591e+00, 9.93703902e-01]],
+
+        [[5.62848747e-02, 8.78528729e-02, 6.98984712e-02, ...,
+          1.70552719e+00, 1.65679741e+00, 1.45103478e+00],
+         [1.50568581e+00, 2.33681893e+00, 1.86874521e+00, ...,
+          2.13886809e+00, 2.09687924e+00, 1.56794143e+00],
+         [6.13736534e+00, 9.12473965e+00, 7.54311037e+00, ...,
+          2.31507921e+00, 2.02553368e+00, 1.68081594e+00],
+         ...,
+         [1.43347776e+00, 2.33017612e+00, 1.58341837e+00, ...,
+          1.67849028e+00, 1.90103030e+00, 1.32788754e+00],
+         [1.31045258e+00, 1.98709869e+00, 1.51269495e+00, ...,
+          1.05820358e+00, 1.36463916e+00, 1.00240934e+00],
+         [1.17642534e+00, 1.16186559e+00, 1.26552439e+00, ...,
+          2.47591674e-01, 3.48209143e-01, 2.66949832e-01]]],
+
+
+       [[[5.16335309e-01, 4.35817182e-01, 3.38744700e-01, ...,
+          4.34272432e+00, 4.17598391e+00, 5.76127148e+00],
+         [1.87875199e+00, 1.56267726e+00, 1.36310029e+00, ...,
+          6.54485559e+00, 4.66837215e+00, 6.44161415e+00],
+         [2.26342559e+00, 1.93304372e+00, 2.13935590e+00, ...,
+          8.68676853e+00, 5.29964924e+00, 7.18553972e+00],
+         ...,
+         [4.67059803e+00, 6.25557899e+00, 5.82164288e+00, ...,
+          1.04411812e+01, 8.41403103e+00, 1.13331766e+01],
+         [4.67348957e+00, 3.43138433e+00, 4.24421263e+00, ...,
+          6.97065926e+00, 5.73572779e+00, 8.75129223e+00],
+         [1.37512648e+00, 8.07158947e-01, 1.12479222e+00, ...,
+          1.76325107e+00, 1.50681996e+00, 2.30957866e+00]],
+
+        [[1.79441357e+00, 1.64097691e+00, 1.24467874e+00, ...,
+          4.08676195e+00, 3.96264577e+00, 4.02269554e+00],
+         [6.58593130e+00, 5.97733974e+00, 4.97055531e+00, ...,
+          5.65305233e+00, 4.41717672e+00, 4.77268457e+00],
+         [8.07355118e+00, 7.51473856e+00, 7.70503473e+00, ...,
+          5.99021578e+00, 5.13026476e+00, 5.72225618e+00],
+         ...,
+         [5.34120035e+00, 6.75919724e+00, 5.78971672e+00, ...,
+          8.15130329e+00, 8.90240288e+00, 9.58959961e+00],
+         [4.81656790e+00, 3.52977014e+00, 4.17468929e+00, ...,
+          5.79476070e+00, 5.85130167e+00, 6.34208441e+00],
+         [1.37055182e+00, 8.00063431e-01, 1.07274771e+00, ...,
+          1.52192104e+00, 1.44861269e+00, 1.59709251e+00]],
+
+        [[1.97988105e+00, 2.15575600e+00, 1.53627896e+00, ...,
+          4.84296227e+00, 3.79357529e+00, 4.06274366e+00],
+         [7.34912825e+00, 8.09585476e+00, 5.96056509e+00, ...,
+          5.76977825e+00, 5.16391182e+00, 4.42791128e+00],
+         [9.09988213e+00, 1.04250631e+01, 8.81924152e+00, ...,
+          6.37824965e+00, 6.42521667e+00, 5.41565371e+00],
+         ...,
+         [6.39377737e+00, 6.85526276e+00, 6.39585447e+00, ...,
+          7.95254755e+00, 8.83809948e+00, 8.08702946e+00],
+         [4.75360775e+00, 3.69194317e+00, 4.67527866e+00, ...,
+          6.79178476e+00, 6.60782337e+00, 5.79116631e+00],
+         [1.23921609e+00, 8.67338359e-01, 1.19502568e+00, ...,
+          1.91080272e+00, 1.71098709e+00, 1.50008655e+00]],
+
+        ...,
+
+        [[6.21750839e-02, 4.16390710e-02, 5.28799407e-02, ...,
+          6.30716181e+00, 5.66256094e+00, 6.32496071e+00],
+         [1.42818630e+00, 1.11452711e+00, 1.40561414e+00, ...,
+          7.81527758e+00, 6.61597490e+00, 7.56492329e+00],
+         [5.42369890e+00, 4.76737309e+00, 5.64061213e+00, ...,
+          9.13206959e+00, 7.78078794e+00, 8.08306313e+00],
+         ...,
+         [5.38199568e+00, 5.51082754e+00, 2.10601330e+00, ...,
+          9.11270046e+00, 8.70978928e+00, 7.99250650e+00],
+         [2.15321541e+00, 2.85831618e+00, 1.98547256e+00, ...,
+          5.47876692e+00, 5.12738609e+00, 4.64997149e+00],
+         [1.02880740e+00, 1.01548064e+00, 1.28628802e+00, ...,
+          1.27543974e+00, 1.17356384e+00, 1.03915560e+00]],
+
+        [[4.51307110e-02, 4.39678505e-02, 4.71784920e-02, ...,
+          5.05884218e+00, 4.88574409e+00, 5.00247955e+00],
+         [1.19256115e+00, 1.19032121e+00, 1.27102566e+00, ...,
+          6.00447750e+00, 5.95692635e+00, 5.89274168e+00],
+         [4.61917019e+00, 5.20284081e+00, 5.36673784e+00, ...,
+          7.19962072e+00, 7.14671278e+00, 6.46294069e+00],
+         ...,
+         [2.57877755e+00, 3.74235320e+00, 1.55369449e+00, ...,
+          5.42158747e+00, 5.49919987e+00, 4.88178873e+00],
+         [1.34578705e+00, 2.35184741e+00, 1.63303375e+00, ...,
+          3.19537878e+00, 3.52787781e+00, 2.97532010e+00],
+         [1.02903521e+00, 1.04708266e+00, 1.20268095e+00, ...,
+          7.21800387e-01, 8.71632338e-01, 7.00284779e-01]],
+
+        [[4.18136343e-02, 5.95071577e-02, 5.09189926e-02, ...,
+          1.33621395e+00, 1.35172176e+00, 1.36445391e+00],
+         [1.11619794e+00, 1.58542383e+00, 1.36786306e+00, ...,
+          1.56250179e+00, 1.67728734e+00, 1.55720270e+00],
+         [4.47504139e+00, 6.26198435e+00, 5.67423058e+00, ...,
+          1.90727425e+00, 2.05242252e+00, 1.72198117e+00],
+         ...,
+         [5.60597301e-01, 9.22893286e-01, 4.16732579e-01, ...,
+          1.21637523e+00, 1.31052446e+00, 1.11226380e+00],
+         [3.43086958e-01, 6.37247264e-01, 4.48347062e-01, ...,
+          7.07459509e-01, 9.09511030e-01, 7.25197792e-01],
+         [3.05302441e-01, 3.10946047e-01, 3.44015867e-01, ...,
+          1.55864984e-01, 2.37040445e-01, 1.80037349e-01]]],
+
+
+       [[[4.23912704e-01, 3.89860392e-01, 2.37258211e-01, ...,
+          1.36084092e+00, 1.31031561e+00, 1.88232946e+00],
+         [1.69096828e+00, 1.40793777e+00, 1.10498118e+00, ...,
+          2.07185364e+00, 1.52162695e+00, 2.05748200e+00],
+         [2.25569105e+00, 1.67143726e+00, 2.05524635e+00, ...,
+          2.67569828e+00, 1.60000944e+00, 2.11607385e+00],
+         ...,
+         [1.17611158e+00, 1.66883147e+00, 1.63858879e+00, ...,
+          1.00455647e+01, 6.88349676e+00, 8.57550907e+00],
+         [1.16243982e+00, 8.93578470e-01, 1.27261710e+00, ...,
+          5.07276487e+00, 4.31024122e+00, 6.68671179e+00],
+         [3.42250139e-01, 2.08077967e-01, 3.46721828e-01, ...,
+          1.07302785e+00, 1.12937033e+00, 1.79338861e+00]],
+
+        [[1.53232789e+00, 1.50897980e+00, 8.85459125e-01, ...,
+          1.31330848e+00, 1.33137774e+00, 1.17030644e+00],
+         [6.00666380e+00, 5.47715330e+00, 4.02382278e+00, ...,
+          1.80797780e+00, 1.44546926e+00, 1.47722971e+00],
+         [7.90012264e+00, 6.54777479e+00, 7.32850933e+00, ...,
+          1.82295787e+00, 1.56686008e+00, 1.75968742e+00],
+         ...,
+         [1.33140552e+00, 1.90436339e+00, 1.69862556e+00, ...,
+          6.86519194e+00, 6.75381470e+00, 6.99716997e+00],
+         [1.28088355e+00, 8.87321234e-01, 1.26764131e+00, ...,
+          3.78603363e+00, 4.13743877e+00, 3.85029817e+00],
+         [3.73427987e-01, 1.86363935e-01, 3.30067992e-01, ...,
+          9.01649773e-01, 1.00136685e+00, 8.49111140e-01]],
+
+        [[1.87862790e+00, 2.03079152e+00, 1.20090377e+00, ...,
+          1.57604873e+00, 1.29761457e+00, 1.17549396e+00],
+         [6.92339373e+00, 7.45885277e+00, 5.01652670e+00, ...,
+          1.84311450e+00, 1.74938715e+00, 1.37966919e+00],
+         [8.38895512e+00, 9.05044746e+00, 8.30928802e+00, ...,
+          1.90062904e+00, 1.97250068e+00, 1.69137406e+00],
+         ...,
+         [1.59590352e+00, 1.97644138e+00, 1.94153690e+00, ...,
+          5.51773643e+00, 7.36046267e+00, 6.10374022e+00],
+         [1.25209796e+00, 9.05778170e-01, 1.40806258e+00, ...,
+          3.99031496e+00, 5.30525398e+00, 3.10292912e+00],
+         [3.37245852e-01, 1.90557837e-01, 3.55351985e-01, ...,
+          1.08766365e+00, 1.35202706e+00, 6.56120181e-01]],
+
+        ...,
+
+        [[1.01012029e-02, 1.18150320e-02, 1.18899494e-02, ...,
+          5.01474142e+00, 5.06778383e+00, 5.14462757e+00],
+         [2.63924986e-01, 3.18958789e-01, 3.24692875e-01, ...,
+          6.06006670e+00, 5.31266689e+00, 6.98946667e+00],
+         [1.05878150e+00, 1.37326241e+00, 1.48266304e+00, ...,
+          7.49924088e+00, 6.26909685e+00, 9.19577503e+00],
+         ...,
+         [1.58715820e+00, 1.30571532e+00, 1.18081495e-01, ...,
+          7.10592842e+00, 7.22599506e+00, 6.69080210e+00],
+         [4.49384153e-01, 4.09877777e-01, 1.12946682e-01, ...,
+          4.33482647e+00, 4.12961292e+00, 4.15185118e+00],
+         [6.80920184e-02, 6.74098730e-02, 7.17221797e-02, ...,
+          1.00659657e+00, 9.27175105e-01, 9.80314136e-01]],
+
+        [[1.08130118e-02, 1.20021058e-02, 1.24670165e-02, ...,
+          3.73669600e+00, 3.80281353e+00, 4.06790495e+00],
+         [2.87450284e-01, 3.27896357e-01, 3.40852052e-01, ...,
+          4.74384546e+00, 4.36335993e+00, 5.29986286e+00],
+         [1.12584949e+00, 1.50545585e+00, 1.56277812e+00, ...,
+          6.03822184e+00, 6.62254763e+00, 6.68818855e+00],
+         ...,
+         [6.06302321e-01, 6.55950546e-01, 8.67425427e-02, ...,
+          4.71643734e+00, 5.15829134e+00, 4.94752026e+00],
+         [1.50111049e-01, 2.07479328e-01, 9.31864232e-02, ...,
+          2.77492428e+00, 3.16782212e+00, 3.37635398e+00],
+         [5.87240718e-02, 6.05717897e-02, 6.71456829e-02, ...,
+          6.16195917e-01, 7.69307077e-01, 8.33991766e-01]],
+
+        [[1.26128662e-02, 1.69332884e-02, 1.55574121e-02, ...,
+          9.53540146e-01, 9.98865664e-01, 1.12527359e+00],
+         [3.35916400e-01, 4.52212304e-01, 4.19154614e-01, ...,
+          1.26683533e+00, 1.20040798e+00, 1.39361179e+00],
+         [1.32687044e+00, 1.81431031e+00, 1.76783335e+00, ...,
+          1.63710976e+00, 2.00169277e+00, 1.69603693e+00],
+         ...,
+         [1.08235925e-01, 1.28987864e-01, 2.31600422e-02, ...,
+          1.15313661e+00, 1.29919672e+00, 1.25885761e+00],
+         [2.38462184e-02, 4.16502766e-02, 2.55431496e-02, ...,
+          6.56292915e-01, 8.56804430e-01, 9.17451978e-01],
+         [1.69448480e-02, 1.74066070e-02, 1.92162264e-02, ...,
+          1.39783353e-01, 2.20030040e-01, 2.34379485e-01]]]],
+      dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>What is the structure of <code class="docutils literal notranslate"><span class="pre">haxby_labels</span></code>?</p>
+<p>Notice it has the same number of rows as the 4th dimension of <code class="docutils literal notranslate"><span class="pre">fmri_data</span></code>. These are the conditions in each TR.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">haxby_labels</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       rest
+1       rest
+2       rest
+3       rest
+4       rest
+        ... 
+1447    rest
+1448    rest
+1449    rest
+1450    rest
+1451    rest
+Name: labels, Length: 1452, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">haxby_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;bottle&#39;, &#39;cat&#39;, &#39;chair&#39;, &#39;face&#39;, &#39;house&#39;, &#39;rest&#39;, &#39;scissors&#39;,
+       &#39;scrambledpix&#39;, &#39;shoe&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">haxby_labels</span> <span class="o">==</span> <span class="s1">&#39;face&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       False
+1       False
+2       False
+3       False
+4       False
+        ...  
+1447    False
+1448    False
+1449    False
+1450    False
+1451    False
+Name: labels, Length: 1452, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get the TR’s (in the 4th column) where the condition was <code class="docutils literal notranslate"><span class="pre">face</span></code> filter <code class="docutils literal notranslate"><span class="pre">fmri_data</span></code> by the indices where <code class="docutils literal notranslate"><span class="pre">haxby_labels</span></code> is <code class="docutils literal notranslate"><span class="pre">face</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">haxby_labels</span> <span class="o">==</span> <span class="s2">&quot;face&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[[ 0.249294  ,  0.23908046,  0.22750494, ...,  1.0444759 ,
+           1.5547976 ,  1.4048415 ],
+         [ 0.36848742,  0.36405116,  0.2626484 , ...,  4.079679  ,
+           6.062603  ,  5.086544  ],
+         [ 0.38807136,  0.4986926 ,  0.29724556, ...,  6.0205965 ,
+           8.205663  ,  6.265127  ],
+         ...,
+         [ 4.8121395 ,  4.722317  ,  4.7552476 , ...,  0.33671847,
+           0.17260528,  0.38363338],
+         [ 1.8278258 ,  2.6381319 ,  2.0118592 , ...,  0.19990312,
+           0.16966033,  0.21935472],
+         [ 0.34474072,  0.61825615,  0.3867336 , ...,  0.08474425,
+           0.08902448,  0.08891624]],
+
+        [[ 0.9114911 ,  0.8340659 ,  0.86384505, ...,  1.1001885 ,
+           1.3172127 ,  1.8039609 ],
+         [ 1.3003798 ,  1.2654822 ,  0.9663606 , ...,  4.197411  ,
+           5.13205   ,  6.552556  ],
+         [ 1.3763375 ,  1.7548878 ,  1.0929116 , ...,  5.862411  ,
+           7.013413  ,  7.6071086 ],
+         ...,
+         [ 4.8144054 ,  3.9113033 ,  4.5009637 , ...,  1.2085421 ,
+           0.83070153,  1.4110998 ],
+         [ 1.958404  ,  2.0309298 ,  2.13984   , ...,  0.7277099 ,
+           0.71503365,  0.8586535 ],
+         [ 0.37470785,  0.46804395,  0.4423745 , ...,  0.28357908,
+           0.34216112,  0.34488693]],
+
+        [[ 1.1666663 ,  0.9120702 ,  1.0951649 , ...,  1.254131  ,
+           1.1937904 ,  1.7875916 ],
+         [ 1.4720008 ,  1.386434  ,  1.2299414 , ...,  4.811371  ,
+           4.8344603 ,  6.7209945 ],
+         [ 1.6410671 ,  1.9083213 ,  1.4487432 , ...,  6.7278643 ,
+           7.0883536 ,  8.451307  ],
+         ...,
+         [ 4.9780526 ,  3.7755685 ,  4.2544746 , ...,  1.3116609 ,
+           1.5751483 ,  1.6969926 ],
+         [ 2.2403653 ,  1.747244  ,  2.0430393 , ...,  0.79893816,
+           1.0731854 ,  1.1268356 ],
+         [ 0.4667215 ,  0.3875035 ,  0.4354802 , ...,  0.24144468,
+           0.41231638,  0.42168662]],
+
+        ...,
+
+        [[ 1.3085494 ,  1.1515433 ,  1.0096269 , ...,  1.3483235 ,
+           1.3998047 ,  2.3553889 ],
+         [ 5.1452165 ,  4.4430656 ,  4.2233977 , ...,  1.4413861 ,
+           1.3873265 ,  1.9945594 ],
+         [ 7.7355814 ,  6.2132144 ,  7.031378  , ...,  1.511256  ,
+           1.2970284 ,  2.0803883 ],
+         ...,
+         [ 9.323418  ,  7.7660847 ,  5.8179436 , ...,  1.6789179 ,
+           1.41025   ,  1.3730508 ],
+         [ 8.2137375 ,  6.1560264 ,  5.2896395 , ...,  0.87154937,
+           0.972369  ,  0.88081074],
+         [ 5.3816533 ,  4.050106  ,  4.128728  , ...,  0.18796483,
+           0.25709972,  0.22635485]],
+
+        [[ 1.4724351 ,  1.327935  ,  1.0521661 , ...,  0.9745102 ,
+           0.9793542 ,  2.4209416 ],
+         [ 5.6889963 ,  4.9448934 ,  4.1954875 , ...,  1.1321375 ,
+           1.0351568 ,  2.177525  ],
+         [ 7.7675343 ,  6.477364  ,  6.315182  , ...,  1.2325505 ,
+           0.9218199 ,  2.2804163 ],
+         ...,
+         [ 6.8430505 ,  5.589166  ,  4.4811535 , ...,  1.7153598 ,
+           1.4666651 ,  1.6144457 ],
+         [ 6.0466814 ,  4.261665  ,  3.7140307 , ...,  1.0185484 ,
+           1.0718211 ,  0.8968581 ],
+         [ 3.984836  ,  2.9888203 ,  2.5080566 , ...,  0.23561113,
+           0.28121877,  0.19560312]],
+
+        [[ 1.3321964 ,  1.363107  ,  1.0691625 , ...,  0.25449914,
+           0.24033858,  0.7219404 ],
+         [ 5.299097  ,  4.980368  ,  4.0843887 , ...,  0.29816163,
+           0.2661805 ,  0.64899915],
+         [ 7.441027  ,  6.1018877 ,  5.590079  , ...,  0.32578665,
+           0.24318042,  0.69277096],
+         ...,
+         [ 1.7374867 ,  1.4428989 ,  1.2332612 , ...,  1.6154276 ,
+           1.203059  ,  1.6071414 ],
+         [ 1.4988337 ,  1.0902846 ,  0.9774531 , ...,  1.1558313 ,
+           1.0665418 ,  0.929402  ],
+         [ 0.9823612 ,  0.77741295,  0.59834975, ...,  0.29339814,
+           0.30016893,  0.21193916]]],
+
+
+       [[[ 0.84574294,  0.83121175,  0.90753746, ...,  1.1727021 ,
+           2.001267  ,  1.5213592 ],
+         [ 1.1585425 ,  1.1945993 ,  0.9695105 , ...,  4.792256  ,
+           7.4078355 ,  5.77704   ],
+         [ 1.2036207 ,  1.5679646 ,  1.0013572 , ...,  7.5365157 ,
+           8.898564  ,  8.092027  ],
+         ...,
+         [ 5.831967  ,  5.4649267 ,  6.70034   , ...,  1.14389   ,
+           0.83356076,  1.3565724 ],
+         [ 2.9636314 ,  3.2563806 ,  3.6361933 , ...,  0.7212008 ,
+           0.7350156 ,  0.8574281 ],
+         [ 0.649956  ,  0.7628064 ,  0.8029018 , ...,  0.299114  ,
+           0.36137685,  0.32921776]],
+
+        [[ 3.142678  ,  2.8981793 ,  3.2865283 , ...,  1.2339238 ,
+           1.508014  ,  2.0541575 ],
+         [ 4.1925087 ,  4.132906  ,  3.4387393 , ...,  4.913909  ,
+           5.769638  ,  7.4776444 ],
+         [ 4.38394   ,  5.5115943 ,  3.6070316 , ...,  7.4352636 ,
+           7.736967  ,  8.858698  ],
+         ...,
+         [ 6.3650208 ,  4.7640166 ,  5.894648  , ...,  4.0686946 ,
+           3.4818628 ,  4.8714027 ],
+         [ 2.9480944 ,  2.6455371 ,  3.2293587 , ...,  2.6375427 ,
+           2.8465276 ,  3.2323883 ],
+         [ 0.6007606 ,  0.6088304 ,  0.7155351 , ...,  1.0645334 ,
+           1.3189856 ,  1.2726532 ]],
+
+        [[ 4.149364  ,  3.1793826 ,  3.780012  , ...,  1.3977813 ,
+           1.2264342 ,  2.1990738 ],
+         [ 5.063717  ,  4.492183  ,  4.021776  , ...,  5.5590754 ,
+           5.1375036 ,  7.9384756 ],
+         [ 5.5889134 ,  6.0440497 ,  4.6004252 , ...,  8.408584  ,
+           8.071563  ,  8.922428  ],
+         ...,
+         [ 6.583784  ,  4.969814  ,  5.1247206 , ...,  4.402364  ,
+           5.4523787 ,  5.55083   ],
+         [ 2.9966547 ,  2.5260096 ,  2.8316174 , ...,  2.9651108 ,
+           3.74382   ,  3.972194  ],
+         [ 0.6058032 ,  0.57297504,  0.63243175, ...,  1.0775237 ,
+           1.467458  ,  1.5784185 ]],
+
+        ...,
+
+        [[ 1.3961821 ,  1.3672482 ,  1.306197  , ...,  5.65179   ,
+           6.2993035 ,  8.808341  ],
+         [ 5.390385  ,  5.4369516 ,  5.032615  , ...,  6.6354413 ,
+           5.8408427 ,  8.07151   ],
+         [ 7.7298093 ,  8.008806  ,  6.987056  , ...,  7.4023104 ,
+           5.830793  ,  8.503912  ],
+         ...,
+         [ 9.985172  , 11.024706  ,  8.740933  , ...,  5.6359563 ,
+           5.2013555 ,  5.0935903 ],
+         [ 8.1992445 ,  9.21713   ,  7.8504252 , ...,  3.4037006 ,
+           3.7195327 ,  3.435503  ],
+         [ 5.365287  ,  6.2501807 ,  5.673797  , ...,  0.8114549 ,
+           0.9967911 ,  0.8861801 ]],
+
+        [[ 1.4188259 ,  1.4992191 ,  1.3720819 , ...,  4.5451255 ,
+           4.05097   ,  8.243156  ],
+         [ 5.518079  ,  5.681914  ,  5.109385  , ...,  5.348772  ,
+           4.01377   ,  7.959613  ],
+         [ 7.863446  ,  7.631419  ,  6.605883  , ...,  5.777599  ,
+           4.3356395 ,  8.336829  ],
+         ...,
+         [ 7.608798  ,  8.787232  ,  6.666978  , ...,  6.09386   ,
+           5.422372  ,  5.883522  ],
+         [ 6.940666  ,  7.00007   ,  5.823891  , ...,  3.9813254 ,
+           4.1791706 ,  3.6004014 ],
+         [ 5.0063233 ,  5.025904  ,  4.0796356 , ...,  0.9707298 ,
+           1.1162528 ,  0.8271684 ]],
+
+        [[ 1.2656931 ,  1.3876168 ,  1.2544554 , ...,  1.2142869 ,
+           0.9476828 ,  2.3650455 ],
+         [ 4.989427  ,  5.2287383 ,  4.859928  , ...,  1.4016743 ,
+           1.0025047 ,  2.2867014 ],
+         [ 7.1052895 ,  7.1272287 ,  6.978363  , ...,  1.4866092 ,
+           1.1444914 ,  2.417341  ],
+         ...,
+         [ 1.9992714 ,  2.3684494 ,  1.8094299 , ...,  5.619762  ,
+           4.5290933 ,  5.4676023 ],
+         [ 1.8906089 ,  1.856267  ,  1.5395678 , ...,  4.0877366 ,
+           3.874896  ,  3.52219   ],
+         [ 1.409092  ,  1.3598825 ,  1.0522764 , ...,  1.0419054 ,
+           1.0716082 ,  0.85687524]]],
+
+
+       [[[ 1.5045686 ,  1.6054252 ,  2.0090938 , ...,  1.9024864 ,
+           2.7832985 ,  2.1215494 ],
+         [ 1.689449  ,  1.9238484 ,  1.8728863 , ...,  7.8421955 ,
+          10.354371  ,  8.162184  ],
+         [ 1.6432266 ,  2.1847198 ,  1.6276375 , ..., 12.190563  ,
+          12.6125345 , 11.580153  ],
+         ...,
+         [ 8.064936  ,  9.159279  , 10.713862  , ...,  1.7859125 ,
+           1.81771   ,  2.061751  ],
+         [ 4.4731307 ,  5.531508  ,  6.569274  , ...,  1.265352  ,
+           1.4732205 ,  1.4346334 ],
+         [ 1.0060208 ,  1.2922765 ,  1.527321  , ...,  0.51097786,
+           0.6720936 ,  0.5083792 ]],
+
+        [[ 5.630984  ,  5.5605097 ,  6.8409123 , ...,  1.8886403 ,
+           2.3054042 ,  2.4118342 ],
+         [ 6.3306494 ,  6.6099916 ,  6.359346  , ...,  7.548514  ,
+           8.718589  ,  8.734379  ],
+         [ 6.2391725 ,  7.618556  ,  5.7164836 , ..., 11.211132  ,
+          11.424203  , 10.33927   ],
+         ...,
+         [ 7.6851935 ,  7.1874557 ,  9.234163  , ...,  6.283051  ,
+           6.7349987 ,  7.100532  ],
+         [ 3.7525866 ,  4.209295  ,  5.3290267 , ...,  4.6652927 ,
+           5.338026  ,  5.1467924 ],
+         [ 0.77546847,  0.9752079 ,  1.1859425 , ...,  1.9844437 ,
+           2.3916616 ,  1.939187  ]],
+
+        [[ 7.219239  ,  5.7950387 ,  6.6163893 , ...,  2.0212302 ,
+           1.8131245 ,  2.6175938 ],
+         [ 8.118892  ,  6.874579  ,  6.4116244 , ...,  7.987609  ,
+           7.2484827 ,  9.249261  ],
+         [ 8.55823   ,  8.260536  ,  6.6590004 , ..., 11.728436  ,
+          10.725502  ,  9.878547  ],
+         ...,
+         [ 7.2909856 ,  6.1563797 ,  7.3135695 , ...,  6.9106035 ,
+           8.535285  ,  7.436653  ],
+         [ 3.5264304 ,  3.2232478 ,  4.154822  , ...,  5.526622  ,
+           6.275654  ,  5.849023  ],
+         [ 0.7246375 ,  0.7323735 ,  0.9059538 , ...,  2.4926276 ,
+           2.6306896 ,  2.4511542 ]],
+
+        ...,
+
+        [[ 1.8758138 ,  1.6925747 ,  2.0616212 , ..., 10.814333  ,
+          12.355196  , 15.392609  ],
+         [ 6.9295692 ,  6.6075478 ,  7.6865683 , ..., 13.750224  ,
+          11.527745  , 15.371196  ],
+         [ 8.78419   ,  9.355002  ,  9.5442095 , ..., 16.133532  ,
+          12.17173   , 16.102255  ],
+         ...,
+         [12.47645   , 14.374282  , 13.826453  , ...,  7.9661145 ,
+           8.662415  ,  8.747576  ],
+         [11.053428  , 12.722747  , 13.348575  , ...,  6.2260175 ,
+           6.6551175 ,  6.1328626 ],
+         [ 7.895094  ,  8.98728   ,  9.119699  , ...,  1.6761694 ,
+           1.8201804 ,  1.5564502 ]],
+
+        [[ 1.7945981 ,  1.9129196 ,  1.9357792 , ...,  9.329878  ,
+           7.3553824 , 12.864721  ],
+         [ 6.738914  ,  7.224311  ,  6.9376183 , ..., 11.514409  ,
+           7.394561  , 13.661081  ],
+         [ 8.909804  ,  9.661698  ,  7.98148   , ..., 12.565955  ,
+           9.540728  , 14.150214  ],
+         ...,
+         [ 9.87473   , 12.378216  , 11.634014  , ...,  9.663621  ,
+           8.9013    , 10.032767  ],
+         [10.012749  , 11.597819  , 11.532872  , ...,  7.280424  ,
+           7.375855  ,  7.0687814 ],
+         [ 7.7853293 ,  8.894437  ,  8.035747  , ...,  1.8972921 ,
+           2.0174696 ,  1.7448606 ]],
+
+        [[ 1.6680628 ,  2.257041  ,  1.9425368 , ...,  2.5015085 ,
+           1.6386015 ,  3.4691787 ],
+         [ 6.351944  ,  8.433922  ,  7.2693596 , ...,  3.0230765 ,
+           1.7853572 ,  3.7409523 ],
+         [ 8.616729  , 11.128053  ,  9.578715  , ...,  3.1999977 ,
+           2.5229285 ,  3.8732917 ],
+         ...,
+         [ 2.6170483 ,  3.3853178 ,  3.187118  , ...,  8.587177  ,
+           7.7917986 ,  8.460503  ],
+         [ 2.7765825 ,  3.2474062 ,  3.1650052 , ...,  6.50315   ,
+           6.3814497 ,  6.360497  ],
+         [ 2.216254  ,  2.5522943 ,  2.2098954 , ...,  1.6857468 ,
+           1.7252715 ,  1.6705415 ]]],
+
+
+       ...,
+
+
+       [[[ 1.2788428 ,  1.6714023 ,  1.3810772 , ...,  9.570587  ,
+           7.263624  ,  6.5009017 ],
+         [ 1.8628969 ,  2.183039  ,  1.6337217 , ..., 10.2437315 ,
+           8.503732  ,  8.0723295 ],
+         [ 2.260523  ,  2.6973677 ,  1.9565665 , ...,  9.405824  ,
+           8.73444   , 10.88623   ],
+         ...,
+         [ 7.8810887 ,  8.055955  ,  9.205959  , ...,  9.072584  ,
+           6.3526645 ,  7.2028127 ],
+         [ 6.245601  ,  6.9247146 ,  6.638589  , ...,  7.308136  ,
+           5.613925  ,  6.3438673 ],
+         [ 1.6782947 ,  1.8875853 ,  1.635213  , ...,  2.1005228 ,
+           1.667495  ,  1.803533  ]],
+
+        [[ 5.097356  ,  6.0548606 ,  5.20874   , ...,  7.265684  ,
+           6.436357  ,  5.9872375 ],
+         [ 6.913804  ,  8.1063    ,  6.2726774 , ...,  7.9579315 ,
+           7.351024  ,  7.1479244 ],
+         [ 8.374347  , 10.042766  ,  7.496018  , ...,  8.621     ,
+           8.140396  ,  8.790681  ],
+         ...,
+         [ 9.624629  ,  8.899813  ,  8.946849  , ...,  7.688054  ,
+           7.2924523 ,  7.9888167 ],
+         [ 6.6271043 ,  7.3586698 ,  6.9155135 , ...,  6.419347  ,
+           6.2082744 ,  7.1311746 ],
+         [ 1.6635476 ,  1.9778453 ,  1.8210925 , ...,  1.7721806 ,
+           1.7177588 ,  1.9867157 ]],
+
+        [[ 8.149434  ,  6.560841  ,  6.193728  , ...,  6.559986  ,
+           6.499291  ,  6.8985405 ],
+         [ 8.935184  ,  9.940607  ,  8.087294  , ...,  7.228253  ,
+           7.9745893 ,  8.526147  ],
+         [10.163101  , 12.339676  ,  9.734602  , ...,  9.451383  ,
+           8.915034  ,  8.263787  ],
+         ...,
+         [11.276737  , 10.58068   ,  9.069887  , ...,  8.487889  ,
+           8.552656  ,  8.891985  ],
+         [ 7.471595  ,  8.110322  ,  7.7236123 , ...,  6.819994  ,
+           7.646126  ,  7.6818113 ],
+         [ 1.8414845 ,  2.0867777 ,  2.1937642 , ...,  1.8167944 ,
+           2.155892  ,  2.1343188 ]],
+
+        ...,
+
+        [[ 1.7136852 ,  2.15619   ,  2.480598  , ..., 10.126278  ,
+          10.749575  ,  8.599596  ],
+         [ 7.4427924 ,  8.120696  ,  9.38402   , ...,  8.947481  ,
+          10.169175  ,  7.7082176 ],
+         [12.054529  , 10.548766  , 12.077861  , ...,  8.406836  ,
+           9.382057  ,  8.001368  ],
+         ...,
+         [ 7.352086  , 10.721356  , 10.233442  , ...,  7.1308    ,
+           7.8302045 ,  8.884117  ],
+         [ 9.028917  ,  8.582277  ,  8.727846  , ...,  4.0444427 ,
+           4.9912868 ,  5.160519  ],
+         [ 9.790991  ,  6.385651  ,  6.704195  , ...,  0.9642257 ,
+           1.2532254 ,  1.1982104 ]],
+
+        [[ 1.2027036 ,  1.791836  ,  1.9230646 , ...,  7.937162  ,
+           7.299618  ,  8.011885  ],
+         [ 5.358001  ,  7.0025525 ,  7.26888   , ...,  6.746139  ,
+           6.868649  ,  6.857091  ],
+         [ 9.195453  ,  9.945109  ,  9.677849  , ...,  6.0470314 ,
+           7.42566   ,  7.0935545 ],
+         ...,
+         [ 5.325088  ,  8.327092  ,  9.0038395 , ...,  5.102625  ,
+           6.1869535 ,  7.1793265 ],
+         [ 6.565904  ,  6.897732  ,  7.555462  , ...,  3.390117  ,
+           4.2164826 ,  4.7985106 ],
+         [ 6.620302  ,  5.483159  ,  5.3524504 , ...,  0.88003516,
+           1.1144044 ,  1.2382281 ]],
+
+        [[ 0.5466359 ,  1.6970949 ,  1.5926982 , ...,  2.1070251 ,
+           1.8414152 ,  2.2955801 ],
+         [ 2.9910176 ,  6.722619  ,  6.3996353 , ...,  1.763909  ,
+           1.7217158 ,  1.9762434 ],
+         [ 7.0275745 ,  9.895976  ,  9.650352  , ...,  1.5780967 ,
+           2.0121763 ,  2.043306  ],
+         ...,
+         [ 1.3754702 ,  2.225708  ,  2.5314953 , ...,  1.3349924 ,
+           1.6285701 ,  1.938974  ],
+         [ 1.7010267 ,  1.8588637 ,  2.1049964 , ...,  0.9501403 ,
+           1.1544868 ,  1.3768246 ],
+         [ 1.6698146 ,  1.5234338 ,  1.4700674 , ...,  0.25462252,
+           0.31335774,  0.3685286 ]]],
+
+
+       [[[ 1.0183146 ,  1.3639449 ,  1.4388939 , ...,  6.88501   ,
+           5.8833413 ,  3.7203815 ],
+         [ 1.7275479 ,  1.8009604 ,  1.6413283 , ...,  6.909843  ,
+           7.0407715 ,  4.5058045 ],
+         [ 1.9873677 ,  2.0965343 ,  1.7815132 , ...,  5.931182  ,
+           6.9803615 ,  6.861857  ],
+         ...,
+         [ 5.8146033 ,  4.7168694 ,  5.7077045 , ...,  8.530856  ,
+           5.5822787 ,  6.0023427 ],
+         [ 4.6327443 ,  4.126524  ,  4.067685  , ...,  5.682712  ,
+           4.109998  ,  5.1464133 ],
+         [ 1.2463758 ,  1.1255047 ,  1.0222654 , ...,  1.4857506 ,
+           1.1450229 ,  1.4467478 ]],
+
+        [[ 3.9104352 ,  4.436154  ,  4.638989  , ...,  4.7904344 ,
+           4.418217  ,  3.7397609 ],
+         [ 6.1811795 ,  6.5136    ,  5.9820256 , ...,  5.2555313 ,
+           5.6723022 ,  4.40774   ],
+         [ 7.303295  ,  7.8740363 ,  6.7367816 , ...,  5.5815625 ,
+           6.4220915 ,  5.746221  ],
+         ...,
+         [ 6.7905483 ,  5.316476  ,  5.264892  , ...,  6.638336  ,
+           5.241395  ,  5.918231  ],
+         [ 4.557612  ,  4.4104996 ,  4.1076493 , ...,  4.6183333 ,
+           3.9882832 ,  5.0208    ],
+         [ 1.1149795 ,  1.1901038 ,  1.1058439 , ...,  1.2035927 ,
+           1.0830312 ,  1.4010818 ]],
+
+        [[ 5.81053   ,  3.5406997 ,  3.48492   , ...,  4.300994  ,
+           4.495497  ,  4.431375  ],
+         [ 7.303296  ,  7.7281313 ,  6.9796877 , ...,  4.7155204 ,
+           5.6113105 ,  5.5989294 ],
+         [ 8.746247  , 10.092214  ,  8.720102  , ...,  6.455348  ,
+           6.6763988 ,  5.498434  ],
+         ...,
+         [ 7.1975813 ,  6.041245  ,  5.589087  , ...,  7.4865212 ,
+           5.339887  ,  6.8837905 ],
+         [ 4.3881226 ,  4.6749763 ,  4.302094  , ...,  5.749845  ,
+           4.6335974 ,  5.8120484 ],
+         [ 1.0315031 ,  1.2258335 ,  1.1873091 , ...,  1.5283836 ,
+           1.3022069 ,  1.6279211 ]],
+
+        ...,
+
+        [[ 1.3687379 ,  1.4264494 ,  1.5062193 , ...,  7.782075  ,
+           7.3405294 ,  6.1419005 ],
+         [ 5.18309   ,  5.163392  ,  5.887031  , ...,  7.71791   ,
+           7.9398293 ,  6.2973294 ],
+         [ 6.4351144 ,  6.240971  ,  8.250997  , ...,  7.8296885 ,
+           8.118201  ,  6.95559   ],
+         ...,
+         [ 5.1877103 ,  6.4953623 ,  5.474412  , ...,  6.302271  ,
+           6.337152  ,  7.515002  ],
+         [ 5.40648   ,  5.256832  ,  4.9696913 , ...,  3.112396  ,
+           3.568489  ,  4.2323375 ],
+         [ 5.6700783 ,  3.5943506 ,  4.2230873 , ...,  0.706286  ,
+           0.84636116,  0.96367246]],
+
+        [[ 0.58406234,  1.0200424 ,  1.1299269 , ...,  6.9253025 ,
+           5.0981307 ,  5.2624063 ],
+         [ 2.623598  ,  4.1608257 ,  4.5280266 , ...,  6.4518814 ,
+           5.3142204 ,  4.7280083 ],
+         [ 4.4676795 ,  6.4735255 ,  6.9379916 , ...,  5.666357  ,
+           6.112458  ,  5.479006  ],
+         ...,
+         [ 3.638863  ,  5.481445  ,  4.8559213 , ...,  4.760667  ,
+           5.1042647 ,  5.914575  ],
+         [ 3.909905  ,  4.607734  ,  4.162237  , ...,  2.5671563 ,
+           2.8727927 ,  3.2305813 ],
+         [ 3.8152258 ,  3.0135162 ,  3.4919648 , ...,  0.60284173,
+           0.7053938 ,  0.7456771 ]],
+
+        [[ 0.12893872,  0.58965427,  0.9461203 , ...,  1.9222716 ,
+           1.2998353 ,  1.4853395 ],
+         [ 1.1948025 ,  3.106296  ,  3.9426126 , ...,  1.7424669 ,
+           1.3192375 ,  1.2916902 ],
+         [ 3.6885622 ,  6.8588576 ,  6.6462674 , ...,  1.4638997 ,
+           1.6257061 ,  1.5230381 ],
+         ...,
+         [ 0.93012625,  1.4964949 ,  1.3644669 , ...,  1.2847791 ,
+           1.350599  ,  1.5927836 ],
+         [ 1.0244223 ,  1.2740892 ,  1.137747  , ...,  0.7207343 ,
+           0.762969  ,  0.84907186],
+         [ 0.96191746,  0.82119685,  0.9609252 , ...,  0.17144538,
+           0.19132644,  0.19526997]]],
+
+
+       [[[ 0.8910475 ,  0.77278304,  1.5287066 , ...,  1.953257  ,
+           1.7020288 ,  0.96689945],
+         [ 1.4621838 ,  1.1672994 ,  1.6900046 , ...,  1.9370129 ,
+           2.168888  ,  1.1236433 ],
+         [ 1.5424235 ,  1.5732284 ,  1.532644  , ...,  1.6519454 ,
+           2.1403067 ,  1.8097514 ],
+         ...,
+         [ 1.6535333 ,  1.2082918 ,  1.5316565 , ...,  5.660333  ,
+           6.171296  ,  5.4842415 ],
+         [ 1.3145232 ,  1.0386872 ,  1.0821322 , ...,  3.318924  ,
+           4.789637  ,  4.877898  ],
+         [ 0.35397753,  0.28182203,  0.2767409 , ...,  0.8277516 ,
+           1.2969779 ,  1.4212985 ]],
+
+        [[ 3.2254837 ,  2.453621  ,  4.6793346 , ...,  1.3360978 ,
+           1.2311311 ,  1.0497607 ],
+         [ 5.053376  ,  4.296139  ,  5.9361024 , ...,  1.4922985 ,
+           1.7525436 ,  1.2158849 ],
+         [ 5.605204  ,  5.9094687 ,  5.6552305 , ...,  1.581891  ,
+           1.9949517 ,  1.6099432 ],
+         ...,
+         [ 1.8902571 ,  1.3949351 ,  1.3303542 , ...,  4.870403  ,
+           5.641495  ,  4.476462  ],
+         [ 1.2726825 ,  1.144444  ,  1.0480394 , ...,  3.0363445 ,
+           4.664772  ,  3.5883226 ],
+         [ 0.31002676,  0.30912718,  0.28727782, ...,  0.80101305,
+           1.2914734 ,  1.0417678 ]],
+
+        [[ 3.6912563 ,  1.9419469 ,  2.8652155 , ...,  1.2347308 ,
+           1.312122  ,  1.2568177 ],
+         [ 5.2909007 ,  5.6312776 ,  6.5622807 , ...,  1.3369122 ,
+           1.6806278 ,  1.5791191 ],
+         [ 6.653285  ,  7.8195486 ,  7.503762  , ...,  1.8669393 ,
+           2.0301404 ,  1.5877265 ],
+         ...,
+         [ 1.8895589 ,  1.5361223 ,  1.4297438 , ...,  5.960207  ,
+           5.180361  ,  5.446343  ],
+         [ 1.1211312 ,  1.1774006 ,  1.0045907 , ...,  4.4490237 ,
+           4.7428017 ,  4.4177747 ],
+         [ 0.2588386 ,  0.31205672,  0.26927575, ...,  1.2309506 ,
+           1.3186113 ,  1.2606438 ]],
+
+        ...,
+
+        [[ 0.4350323 ,  0.40044132,  0.37356722, ...,  6.40967   ,
+           5.90681   ,  5.465541  ],
+         [ 1.5013297 ,  1.406436  ,  1.5054017 , ...,  6.090697  ,
+           7.9567833 ,  5.9841948 ],
+         [ 1.4376954 ,  1.5857877 ,  2.2776327 , ...,  6.2401633 ,
+           9.276082  ,  6.229916  ],
+         ...,
+         [ 1.5497016 ,  1.6854097 ,  1.3109856 , ...,  5.588443  ,
+           5.555445  ,  6.292711  ],
+         [ 1.4578931 ,  1.4168372 ,  1.2883154 , ...,  2.4646096 ,
+           2.64766   ,  3.499124  ],
+         [ 1.467167  ,  1.0316213 ,  1.2808902 , ...,  0.5172621 ,
+           0.57209605,  0.7957992 ]],
+
+        [[ 0.13791046,  0.27745774,  0.2875737 , ...,  6.176854  ,
+           4.0803957 ,  4.491143  ],
+         [ 0.6032133 ,  1.1413146 ,  1.2188189 , ...,  5.83004   ,
+           5.373409  ,  4.2615285 ],
+         [ 0.9666126 ,  1.8040252 ,  2.0818193 , ...,  5.111949  ,
+           6.784488  ,  4.5477138 ],
+         ...,
+         [ 1.0920339 ,  1.5010924 ,  1.1403493 , ...,  4.548586  ,
+           4.3631015 ,  4.8958488 ],
+         [ 1.065346  ,  1.3343716 ,  1.0504239 , ...,  2.1750078 ,
+           2.1723309 ,  2.1644058 ],
+         [ 0.9585227 ,  0.8341041 ,  1.0667115 , ...,  0.4703076 ,
+           0.5072692 ,  0.41143256]],
+
+        [[ 0.01766442,  0.09938361,  0.23658316, ...,  1.7794932 ,
+           1.0388622 ,  1.2401825 ],
+         [ 0.26738432,  0.709097  ,  1.0449568 , ...,  1.6847748 ,
+           1.3359979 ,  1.1114825 ],
+         [ 0.9112887 ,  1.9736109 ,  1.980974  , ...,  1.4124367 ,
+           1.743967  ,  1.218896  ],
+         ...,
+         [ 0.280376  ,  0.41625276,  0.31835347, ...,  1.2719319 ,
+           1.1410266 ,  1.3417395 ],
+         [ 0.28294262,  0.37718323,  0.2831248 , ...,  0.64243853,
+           0.58478683,  0.5207615 ],
+         [ 0.24122417,  0.22421801,  0.2943234 , ...,  0.14182793,
+           0.14189613,  0.08522701]]]], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now there are 108 TRs in this condition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">haxby_labels</span> <span class="o">==</span> <span class="s2">&quot;face&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(40, 64, 64, 108)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># This test returns p-values that represent probabilities that the two</span>
+<span class="c1"># time-series were not drawn from the same distribution. The lower the</span>
+<span class="c1"># p-value, the more discriminative is the voxel in distinguishing the two</span>
+<span class="c1"># conditions (faces and houses).</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">p_values</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span>
+    <span class="n">fmri_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">haxby_labels</span> <span class="o">==</span> <span class="s2">&quot;face&quot;</span><span class="p">],</span>
+    <span class="n">fmri_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">haxby_labels</span> <span class="o">==</span> <span class="s2">&quot;house&quot;</span><span class="p">],</span>
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Use a log scale for p-values</span>
+<span class="n">log_p_values</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">p_values</span><span class="p">)</span>
+<span class="c1"># NAN values to zero</span>
+<span class="n">log_p_values</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">log_p_values</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">log_p_values</span><span class="p">[</span><span class="n">log_p_values</span> <span class="o">&gt;</span> <span class="mf">10.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span>
+
+<span class="c1"># Before visualizing, we transform the computed p-values to Nifti-like image</span>
+<span class="c1"># using function `new_img_like` from nilearn.</span>
+<span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">new_img_like</span>
+
+<span class="c1"># Visualize statistical p-values using plotting function `plot_stat_map`</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_stat_map</span>
+
+<span class="c1"># First argument being a reference image</span>
+<span class="c1"># and second argument should be p-values data</span>
+<span class="c1"># to convert to a new image as output.</span>
+<span class="c1"># This new image will have same header information as reference image.</span>
+<span class="n">log_p_values_img</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">,</span> <span class="n">log_p_values</span><span class="p">)</span>
+
+<span class="c1"># Now, we visualize log p-values image on functional mean image as background</span>
+<span class="c1"># with coordinates given manually and colorbar on the right side of plot (by</span>
+<span class="c1"># default colorbar=True)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span>
+    <span class="n">log_p_values_img</span><span class="p">,</span> <span class="n">mean_img</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;p-values&quot;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="n">cut_coords</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays._slicers.OrthoSlicer at 0x2838e3130&gt;
+</pre></div>
+</div>
+<img alt="../_images/1df6c056aa8da877b0c98ee216aa73eb4ca0b3ec938bcbdc6805d5b44ddb2c9a.png" src="../_images/1df6c056aa8da877b0c98ee216aa73eb4ca0b3ec938bcbdc6805d5b44ddb2c9a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that we use log p-values data; we force values below 5 to 0 by</span>
+<span class="c1"># thresholding.</span>
+<span class="n">log_p_values</span><span class="p">[</span><span class="n">log_p_values</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Visualize the reduced voxels of interest using statistical image plotting</span>
+<span class="c1"># function. As shown above, we first transform data in array to Nifti image.</span>
+<span class="n">log_p_values_img</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">,</span> <span class="n">log_p_values</span><span class="p">)</span>
+
+<span class="c1"># Now, visualizing the created log p-values to image without colorbar and</span>
+<span class="c1"># without Left - &#39;L&#39;, Right - &#39;R&#39; annotation</span>
+<span class="n">plot_stat_map</span><span class="p">(</span>
+    <span class="n">log_p_values_img</span><span class="p">,</span>
+    <span class="n">mean_img</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Thresholded p-values&quot;</span><span class="p">,</span>
+    <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">cut_coords</span><span class="o">=</span><span class="n">cut_coords</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays._slicers.OrthoSlicer at 0x2838e1ed0&gt;
+</pre></div>
+</div>
+<img alt="../_images/017c6c344e79b487bcb21166c605be883bdc9a991552273576f99041ea51544e.png" src="../_images/017c6c344e79b487bcb21166c605be883bdc9a991552273576f99041ea51544e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># self-computed mask</span>
+<span class="n">bin_p_values</span> <span class="o">=</span> <span class="n">log_p_values</span> <span class="o">!=</span> <span class="mi">0</span>
+<span class="c1"># VT mask</span>
+<span class="n">mask_vt_filename</span> <span class="o">=</span> <span class="n">haxby_dataset</span><span class="o">.</span><span class="n">mask_vt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># The first step is to load VT mask and same time convert data type</span>
+<span class="c1"># numbers to boolean type</span>
+<span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">load_img</span>
+
+<span class="n">vt</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">load_img</span><span class="p">(</span><span class="n">mask_vt_filename</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+
+<span class="c1"># We can then use a logical &quot;and&quot; operation - numpy.logical_and - to keep only</span>
+<span class="c1"># voxels that have been selected in both masks. In neuroimaging jargon, this</span>
+<span class="c1"># is called an &quot;AND conjunction&quot;. We use already imported numpy as np</span>
+<span class="n">bin_p_values_and_vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">bin_p_values</span><span class="p">,</span> <span class="n">vt</span><span class="p">)</span>
+
+<span class="c1"># Visualizing the mask intersection results using plotting function `plot_roi`,</span>
+<span class="c1"># a function which can be used for visualizing target specific voxels.</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_roi</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c1"># First, we create new image type of binarized and intersected mask (second</span>
+<span class="c1"># argument) and use this created Nifti image type in visualization. Binarized</span>
+<span class="c1"># values in data type boolean should be converted to int data type at the same</span>
+<span class="c1"># time. Otherwise, an error will be raised</span>
+<span class="n">bin_p_values_and_vt_img</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span>
+    <span class="n">fmri_img</span><span class="p">,</span> <span class="n">bin_p_values_and_vt</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="c1"># Visualizing goes here with background as computed mean of functional images</span>
+<span class="n">plot_roi</span><span class="p">(</span>
+    <span class="n">bin_p_values_and_vt_img</span><span class="p">,</span>
+    <span class="n">mean_img</span><span class="p">,</span>
+    <span class="n">cut_coords</span><span class="o">=</span><span class="n">cut_coords</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Intersection with ventral temporal mask&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b1/562kvth14gx1lc4r0w65fc0m0000gn/T/ipykernel_79766/2663323348.py:25: UserWarning: Data array used to create a new image contains 64-bit ints. This is likely due to creating the array with numpy and passing `int` as the `dtype`. Many tools such as FSL and SPM cannot deal with int64 in Nifti images, so for compatibility the data has been converted to int32.
+  bin_p_values_and_vt_img = new_img_like(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays._slicers.OrthoSlicer at 0x29066e0e0&gt;
+</pre></div>
+</div>
+<img alt="../_images/a8e9eebe8b6c44c7a279cbd2bac94b34a01b88c2f2ceb11faed30d7810700681.png" src="../_images/a8e9eebe8b6c44c7a279cbd2bac94b34a01b88c2f2ceb11faed30d7810700681.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We use ndimage function from scipy Python library for mask dilation</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">binary_dilation</span>
+
+<span class="c1"># Input here is a binarized and intersected mask data from previous section</span>
+<span class="n">dil_bin_p_values_and_vt</span> <span class="o">=</span> <span class="n">binary_dilation</span><span class="p">(</span><span class="n">bin_p_values_and_vt</span><span class="p">)</span>
+
+<span class="c1"># Now, we visualize the same using `plot_roi` with data being converted</span>
+<span class="c1"># to Nifti image.</span>
+<span class="c1"># In all new image like, reference image is the same but second argument</span>
+<span class="c1"># varies with data specific</span>
+<span class="n">dil_bin_p_values_and_vt_img</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span>
+    <span class="n">fmri_img</span><span class="p">,</span> <span class="n">dil_bin_p_values_and_vt</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="c1"># Visualization goes here without &#39;L&#39;, &#39;R&#39; annotation and coordinates being the</span>
+<span class="c1"># same</span>
+<span class="n">plot_roi</span><span class="p">(</span>
+    <span class="n">dil_bin_p_values_and_vt_img</span><span class="p">,</span>
+    <span class="n">mean_img</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Dilated mask&quot;</span><span class="p">,</span>
+    <span class="n">cut_coords</span><span class="o">=</span><span class="n">cut_coords</span><span class="p">,</span>
+    <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b1/562kvth14gx1lc4r0w65fc0m0000gn/T/ipykernel_79766/3856120610.py:11: UserWarning: Data array used to create a new image contains 64-bit ints. This is likely due to creating the array with numpy and passing `int` as the `dtype`. Many tools such as FSL and SPM cannot deal with int64 in Nifti images, so for compatibility the data has been converted to int32.
+  dil_bin_p_values_and_vt_img = new_img_like(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays._slicers.OrthoSlicer at 0x290799360&gt;
+</pre></div>
+</div>
+<img alt="../_images/04bfe8df2e7a13db410992f3a888d158bf79dfae0cf4c5daaec0dc2e8d185c3b.png" src="../_images/04bfe8df2e7a13db410992f3a888d158bf79dfae0cf4c5daaec0dc2e8d185c3b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">label</span>
+
+<span class="n">labels</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">dil_bin_p_values_and_vt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5, 6], dtype=int32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The 5th and the 3rd are the labels we are interested in but you can visualize the other labels as well to confirm that they are smaller clusters of connected dilated voxels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we take first roi data with labels assigned as integer 1</span>
+<span class="n">first_roi_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="c1"># Similarly, second roi data is assigned as integer 2</span>
+<span class="n">second_roi_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="c1"># Visualizing the connected components</span>
+<span class="c1"># First, we create a Nifti image type from first roi data in a array</span>
+<span class="n">first_roi_img</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">,</span> <span class="n">first_roi_data</span><span class="p">)</span>
+<span class="c1"># Then, visualize the same created Nifti image in first argument and mean of</span>
+<span class="c1"># functional images as background (second argument), cut_coords is default now</span>
+<span class="c1"># and coordinates are selected automatically pointed exactly on the roi data</span>
+<span class="n">plot_roi</span><span class="p">(</span><span class="n">first_roi_img</span><span class="p">,</span> <span class="n">mean_img</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Connected components: first ROI&quot;</span><span class="p">)</span>
+<span class="c1"># we do the same for second roi data</span>
+<span class="n">second_roi_img</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">,</span> <span class="n">second_roi_data</span><span class="p">)</span>
+<span class="c1"># Visualization goes here with second roi image and cut_coords are default with</span>
+<span class="c1"># coordinates selected automatically pointed on the data</span>
+<span class="n">plot_roi</span><span class="p">(</span><span class="n">second_roi_img</span><span class="p">,</span> <span class="n">mean_img</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Connected components: second ROI&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b1/562kvth14gx1lc4r0w65fc0m0000gn/T/ipykernel_79766/1829276495.py:7: UserWarning: Data array used to create a new image contains 64-bit ints. This is likely due to creating the array with numpy and passing `int` as the `dtype`. Many tools such as FSL and SPM cannot deal with int64 in Nifti images, so for compatibility the data has been converted to int32.
+  first_roi_img = new_img_like(fmri_img, first_roi_data)
+/var/folders/b1/562kvth14gx1lc4r0w65fc0m0000gn/T/ipykernel_79766/1829276495.py:13: UserWarning: Data array used to create a new image contains 64-bit ints. This is likely due to creating the array with numpy and passing `int` as the `dtype`. Many tools such as FSL and SPM cannot deal with int64 in Nifti images, so for compatibility the data has been converted to int32.
+  second_roi_img = new_img_like(fmri_img, second_roi_data)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays._slicers.OrthoSlicer at 0x2909ed6f0&gt;
+</pre></div>
+</div>
+<img alt="../_images/3416e85c7e896e8ba272d8d08a8a35cd747bb3d1ed5017466f2260399e5fd176.png" src="../_images/3416e85c7e896e8ba272d8d08a8a35cd747bb3d1ed5017466f2260399e5fd176.png" />
+<img alt="../_images/4e6a07bab082b3daf2c062030b8f5d263ca113781783597e95e825d6345299b3.png" src="../_images/4e6a07bab082b3daf2c062030b8f5d263ca113781783597e95e825d6345299b3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We extract data from ROIs using nilearn&#39;s NiftiLabelsMasker</span>
+<span class="kn">from</span> <span class="nn">nilearn.maskers</span> <span class="kn">import</span> <span class="n">NiftiLabelsMasker</span>
+
+<span class="c1"># Before data extraction, we convert an array labels to Nifti like image. All</span>
+<span class="c1"># inputs to NiftiLabelsMasker must be Nifti-like images or filename to Nifti</span>
+<span class="c1"># images. We use the same reference image as used above in previous sections</span>
+<span class="n">labels_img</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+<span class="c1"># First, initialize masker with parameters suited for data extraction using</span>
+<span class="c1"># labels as input image, resampling_target is None as affine,</span>
+<span class="c1"># shape/size is same</span>
+<span class="c1"># for all the data used here, time series signal processing parameters</span>
+<span class="c1"># standardize and detrend are set to False</span>
+<span class="n">masker</span> <span class="o">=</span> <span class="n">NiftiLabelsMasker</span><span class="p">(</span>
+    <span class="n">labels_img</span><span class="p">,</span> <span class="n">resampling_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="c1"># After initialization of masker object, we call fit() for preparing labels_img</span>
+<span class="c1"># data according to given parameters</span>
+<span class="n">masker</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>NiftiLabelsMasker(labels_img=&lt;nibabel.nifti1.Nifti1Image object at 0x290da75b0&gt;,
+                  resampling_target=None)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">NiftiLabelsMasker</label><div class="sk-toggleable__content"><pre>NiftiLabelsMasker(labels_img=&lt;nibabel.nifti1.Nifti1Image object at 0x290da75b0&gt;,
+                  resampling_target=None)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preparing for data extraction: setting number of conditions, size, etc from</span>
+<span class="c1"># haxby dataset</span>
+<span class="n">condition_names</span> <span class="o">=</span> <span class="n">haxby_labels</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">n_cond_img</span> <span class="o">=</span> <span class="n">fmri_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">haxby_labels</span> <span class="o">==</span> <span class="s2">&quot;house&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># this is the same for all conditions</span>
+<span class="n">n_conds</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">condition_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">haxby_labels</span> <span class="o">==</span> <span class="s2">&quot;house&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">108</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(40, 64, 64, 108)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">haxby_labels</span> <span class="o">==</span> <span class="s2">&quot;house&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(40, 64, 64, 108)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_cond_img</span><span class="p">,</span> <span class="n">n_conds</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_cond_img</span><span class="p">,</span> <span class="n">n_conds</span><span class="p">))</span>
+<span class="c1"># Gathering data for each condition and then use transformer from masker</span>
+<span class="c1"># object transform() on each data. The transformer extracts data in condition</span>
+<span class="c1"># maps where the target regions are specified by labels images</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cond</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">condition_names</span><span class="p">):</span>
+    <span class="n">cond_maps</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span>
+        <span class="n">fmri_img</span><span class="p">,</span> <span class="n">fmri_data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">haxby_labels</span> <span class="o">==</span> <span class="n">cond</span><span class="p">][</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="n">n_cond_img</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">mask_data</span> <span class="o">=</span> <span class="n">masker</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">cond_maps</span><span class="p">)</span> <span class="c1"># use the masker to extract the data for each ROI</span>
+    <span class="n">X1</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">X2</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">mask_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">condition_names</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">condition_names</span> <span class="o">==</span> <span class="s2">&quot;scrambledpix&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;scrambled&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">X1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">X2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">condition_names</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">condition_names</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">25</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Boxplots of data in ROI</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> per condition&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9a1969cc2bc6d83f5b5641413dd38cbb42bbc7e7eb013d4a45c5dcddeeb32553.png" src="../_images/9a1969cc2bc6d83f5b5641413dd38cbb42bbc7e7eb013d4a45c5dcddeeb32553.png" />
+</div>
+</div>
+<p>Another useful tutorial <a class="reference external" href="https://nilearn.github.io/stable/auto_examples/02_decoding/plot_haxby_full_analysis.html">ROI-based decoding</a>.</p>
+<p>A newer tool to play around with data interactively <a class="reference external" href="https://github.com/elliohow/fMRI_ROI_Analysis_Tool">fRAT</a>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="nilearn-create-spherical-mask">
+<h1>Nilearn - create spherical mask<a class="headerlink" href="#nilearn-create-spherical-mask" title="Permalink to this heading">#</a></h1>
+<p>Take from <a class="reference external" href="https://nilearn.github.io/stable/auto_examples/03_connectivity/plot_sphere_based_connectome.html">this tutorial</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmn_coords</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">52</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">46</span><span class="p">,</span> <span class="o">-</span><span class="mi">68</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> <span class="p">(</span><span class="mi">46</span><span class="p">,</span> <span class="o">-</span><span class="mi">68</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Posterior Cingulate Cortex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Left Temporoparietal junction&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Right Temporoparietal junction&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Medial prefrontal cortex&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.maskers</span> <span class="kn">import</span> <span class="n">NiftiSpheresMasker</span>
+
+<span class="n">masker</span> <span class="o">=</span> <span class="n">NiftiSpheresMasker</span><span class="p">(</span>
+    <span class="n">dmn_coords</span><span class="p">,</span>
+    <span class="n">radius</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">detrend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">standardize</span><span class="o">=</span><span class="s2">&quot;zscore_sample&quot;</span><span class="p">,</span>
+    <span class="n">standardize_confounds</span><span class="o">=</span><span class="s2">&quot;zscore_sample&quot;</span><span class="p">,</span>
+    <span class="n">low_pass</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">high_pass</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">t_r</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;nilearn_cache&quot;</span><span class="p">,</span>
+    <span class="n">memory_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">clean__butterworth__padtype</span><span class="o">=</span><span class="s2">&quot;even&quot;</span><span class="p">,</span>  <span class="c1"># kwarg to modify Butterworth filter</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">masker</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">spherical_masker_img</span> <span class="o">=</span> <span class="n">masker</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">fmri_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.base_masker._filter_and_extract...
+_filter_and_extract(&lt;nibabel.nifti1.Nifti1Image object at 0x1085b3a30&gt;, &lt;nilearn.maskers.nifti_spheres_masker._ExtractionFunctor object at 0x2951868f0&gt;, { &#39;allow_overlap&#39;: False,
+  &#39;clean_kwargs&#39;: {&#39;butterworth__padtype&#39;: &#39;even&#39;},
+  &#39;detrend&#39;: True,
+  &#39;dtype&#39;: None,
+  &#39;high_pass&#39;: 0.01,
+  &#39;high_variance_confounds&#39;: False,
+  &#39;low_pass&#39;: 0.1,
+  &#39;mask_img&#39;: None,
+  &#39;radius&#39;: 8,
+  &#39;seeds&#39;: [(0, -52, 18), (-46, -68, 32), (46, -68, 32), (1, 50, -5)],
+  &#39;smoothing_fwhm&#39;: None,
+  &#39;standardize&#39;: &#39;zscore_sample&#39;,
+  &#39;standardize_confounds&#39;: &#39;zscore_sample&#39;,
+  &#39;t_r&#39;: 2}, confounds=None, sample_mask=None, dtype=None, memory=Memory(location=nilearn_cache/joblib), memory_level=1, verbose=2)
+[NiftiSpheresMasker.transform_single_imgs] Loading data from Nifti1Image(
+shape=(40, 64, 64, 1452),
+affine=array([[  -3.5  ,    0.   ,    0.   ,   68.25 ],
+       [   0.   ,    3.75 ,    0.   , -118.125],
+       [   0.   ,    0.   ,    3.75 , -118.125],
+       [   0.   ,    0.   ,    0.   ,    1.   ]])
+)
+[NiftiSpheresMasker.transform_single_imgs] Extracting region signals
+[NiftiSpheresMasker.transform_single_imgs] Cleaning extracted signals
+_______________________________________________filter_and_extract - 3.5s, 0.1min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/zenkavi/.pyenv/versions/3.10.4/envs/py-fmribook/lib/python3.10/site-packages/nilearn/maskers/nifti_spheres_masker.py:455: UserWarning: Persisting input arguments took 2.66s to run.If this happens often in your code, it can cause performance problems (results will be correct in all cases). The reason for this is probably some large input arguments for a wrapped function.
+  signals, _ = self._cache(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualizing goes here with background as computed mean of functional images</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">for</span> <span class="n">time_serie</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">spherical_masker_img</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_serie</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Default Mode Network Time Series&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Scan number&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Normalized signal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f570b9e03df6a070b49d9367760d19a69c9d41681a72c79257d2daed3d875a19.png" src="../_images/f570b9e03df6a070b49d9367760d19a69c9d41681a72c79257d2daed3d875a19.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="neurosynth-functional-roi">
+<h1>Neurosynth - functional ROI<a class="headerlink" href="#neurosynth-functional-roi" title="Permalink to this heading">#</a></h1>
+<p>Based on <a class="reference external" href="https://lukas-snoek.com/NI-edu/fMRI-introduction/week_6/ROI_analysis.html#functional-rois-neurosynth">this tutorial</a></p>
+<p>Do a meta-analysis using a term (e.g. “reward”) and download the generated map. You can then binarize it as shown above.</p>
+<p><img alt="Neurosynth functional ROI" src="content/images/Neurosynth_funcROI.png" /></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ROI Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nilearn-computing-an-roi-mask-manually">Nilearn - computing an ROI mask manually</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nilearn-create-spherical-mask">Nilearn - create spherical mask</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#neurosynth-functional-roi">Neurosynth - functional ROI</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Zeynep Enkavi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
