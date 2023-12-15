@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Subject-level analysis: GLM Level 1 &#8212; Intro to fMRI</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/GLM_level1';</script>
+    <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/GLM_level1.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Intro to fMRI - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Intro to fMRI - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Intro To fMRI
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Topics.html">Topics</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zenkavi/IntroTofMRI" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zenkavi/IntroTofMRI/issues/new?title=Issue%20on%20page%20%2Fcontent/GLM_level1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/GLM_level1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Subject-level analysis: GLM Level 1</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Subject-level analysis: GLM Level 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bold-signal">BOLD signal</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric-regressors">Parametric regressors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#response-time-modeling">Response time modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nuisance-regressors">Nuisance regressors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-between-regressors">Correlation between regressors</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bold-noise">BOLD noise</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drift-a-k-a-1-f-noise-inverse-frequency-low-frequency">Drift (a.k.a 1/f noise, inverse frequency, low frequency)</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="subject-level-analysis-glm-level-1">
+<h1>Subject-level analysis: GLM Level 1<a class="headerlink" href="#subject-level-analysis-glm-level-1" title="Permalink to this heading">#</a></h1>
+<p>!!! note</p>
+<p>Quotes on this page are from Poldrack, Mumford and Nichols (2011) unless otherwise noted.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bold-signal">
+<h1>BOLD signal<a class="headerlink" href="#bold-signal" title="Permalink to this heading">#</a></h1>
+<p><strong>!! Add more here from earlier in the chapter !!</strong></p>
+<section id="parametric-regressors">
+<h2>Parametric regressors<a class="headerlink" href="#parametric-regressors" title="Permalink to this heading">#</a></h2>
+<p>PMN on parametric regressors (p. 81, 82)</p>
+<p>“some feature of a stimulus or task can be parametrically varied, with the expectation that this will be reflected in the strength of the neural response.”</p>
+<p>“It is important that the height values are demeaned prior to creating the regressor, in order to ensure that the parametric regressor is not correlated with the unmodulated regressor. It is also important that the GLM always include an unmodulated regressor in addition to the parametrically modulated regressor. This is analogous to the need to include an intercept term in a linear regression model along with the slope term, since without an intercept it is assumed that the fitted line will go through the origin.”</p>
+</section>
+<section id="response-time-modeling">
+<h2>Response time modeling<a class="headerlink" href="#response-time-modeling" title="Permalink to this heading">#</a></h2>
+<p>PMN on response time modeling (p. 82, 83)</p>
+<p>“a stimulus that is twice as long will also have a BOLD response that is about twice as high (red versus blue line). Thus, trials with longer processing times could have much greater activation simply due to the amount of time on the task, rather than reflecting any qualitative difference in the nature of neural processing. In fact, it is likely that many differences in activation between conditions observed in functional neuroimaging studies are due simply to the fact that one condition takes longer than the other.”</p>
+<p>“A second alternative, which we prefer, is to create the primary regressor using a constant duration, but then include an additional parametric regressor that varies according to response time. This will ensure that the effects of response time are removed from the model and also allows the separate interrogation of constant effects and effects that vary with response time.”</p>
+<p><strong>!! Add more here from Mumford et al. (2023) !!</strong></p>
+</section>
+<section id="nuisance-regressors">
+<h2>Nuisance regressors<a class="headerlink" href="#nuisance-regressors" title="Permalink to this heading">#</a></h2>
+<p>What is a nuisance regressor? From PMN (p. 84) on response time modeling:</p>
+<p>“The term nuisance is used to describe regressors that are included in the model to pick up extra variability in the data when there is no interest in carrying out inference on the corresponding parameters.”</p>
+</section>
+<section id="correlation-between-regressors">
+<h2>Correlation between regressors<a class="headerlink" href="#correlation-between-regressors" title="Permalink to this heading">#</a></h2>
+<p>One reason why one should check correlation in the design matrix described regarding the motion regressors but applies more generally (Poldrack, Mumford and Nichols p. 84):</p>
+<p>“if the motion is correlated with the task, inclusion of the motion regressors may eliminate significant regions seen other- wise. This is because the GLM bases the significance of experimental effects only on the variability uniquely attributable to experimental sources. When such variability is indistinguishable between motion and experimental sources, the significance of the results is reduced, which prevents movement-induced false positives.”</p>
+<p>Ok, so correlations in the design matrix are not good. So what about orthogonalizing the regressors (i.e. using the residuals from regressing one of the correlated regressors on the other)?</p>
+<p>“because of the arbitrary apportionment of variabilty and signficance just demonstrated that we normally recommend against orthogonalization”. I.e. if you orthogonalize regressors the orthogonalized regressor will still contain the unique variance associated with it <em>but</em> the regressor that is left as is would have an inflated impact.</p>
+<p>So more generally:</p>
+<ul class="simple">
+<li><p>whenever possible have low correlation in the design matrix</p></li>
+<li><p>if there is still correlation know where and to what degree it is, so you can take into account the shared variability when interpreting unique variance associated with each regressor.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bold-noise">
+<h1>BOLD noise<a class="headerlink" href="#bold-noise" title="Permalink to this heading">#</a></h1>
+<p>There are two types of noise. <em>White</em> noise that is not focused on specific frequency and <em>colored</em> or <em>structure</em> noise that occurs at particular frequencies (often reflecting a coherent source of variability).</p>
+<section id="drift-a-k-a-1-f-noise-inverse-frequency-low-frequency">
+<h2>Drift (a.k.a 1/f noise, inverse frequency, low frequency)<a class="headerlink" href="#drift-a-k-a-1-f-noise-inverse-frequency-low-frequency" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Origin: at the time of PMN it wasn’t known why this happened.</p></li>
+<li><p>Implication: “when planning a study the frequency of the task does not fall into the range between 0 and 0.015 Hz where the low-frequency noise has typically been found, meaning that the frequency of trial presentation should be faster than one cycle every 65–70 seconds (i.e., a block length of no more than about 35 seconds for an on–off blocked design).”</p></li>
+<li><p>Fix: Step 1 - high-pass filtering. Step 2 - prewhitening (because GLM assummes that each time point is independent, i.e. that there is no autocorrelation).</p>
+<ul>
+<li><p>High-pass filtering: add discrete cosine transform (DCT) basis set to design matrix. “As a rough rule of thumb, the longest period of the drift DCT basis should be at least twice the period of an on–off block design.”. Another approach is to use LOWESS, as done in FSL but both yield very similar results.</p></li>
+<li><p>Prewhitening: GLM assumes no autocorrelation (each observation is independent) and no heteroscesdaticity (variability across time points should be identical). Prewhitening is intended to deal with both of these issues. “In the first step, the GLM is fit ignoring temporal autocorrelation to obtain the model residuals, which is the original data with all modeled variability removed. The residuals are then used to estimate the autocorrelation structure, and then model estimation is carried out after prewhitening <strong>both the data and the design matrix</strong>.” See PMN p. 90-91 for details of the math, the different models for autocorrelation and how SPM and FSL implements prewhitening.</p></li>
+</ul>
+</li>
+</ul>
+<p>!!! note</p>
+<p>Before prewhitening was implemented with good autocorrelation models this step was replaced with pre<em>coloring</em> (a.k.a. temporal smoothing or low-pass filtering). This is now not recommended because, especially for event-related designs, it can result in removal of task-related signal that is spread to higher frequencies.</p>
+<p>Why do we jitter inter-stimulus intervals? To increase the efficiency of the design matrix, i.e. the increase the power to detect unique variance associated with each regressor. See PMN Eq. 5.5. and section 5.3.2 for the details of the math.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Subject-level analysis: GLM Level 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bold-signal">BOLD signal</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric-regressors">Parametric regressors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#response-time-modeling">Response time modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nuisance-regressors">Nuisance regressors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-between-regressors">Correlation between regressors</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bold-noise">BOLD noise</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drift-a-k-a-1-f-noise-inverse-frequency-low-frequency">Drift (a.k.a 1/f noise, inverse frequency, low frequency)</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Zeynep Enkavi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
