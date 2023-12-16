@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Group-level analysis: GLM Level 2+ &#8212; Intro to fMRI</title>
+    <title>GLM Level 2+ &#8212; Intro to fMRI</title>
   
   
   
@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Data visualization" href="Visualization_tools.html" />
-    <link rel="prev" title="Subject-level analysis: GLM Level 1" href="GLM_level1.html" />
+    <link rel="prev" title="GLM Level 1" href="GLM_level1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,19 +176,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">MR Basics</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Glossary.html">What is a magnetic gradient?</a></li>
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="MRI_magic.html">MRI magic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Glossary.html">Glossary</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="GLM_level1.html">Subject-level analysis: GLM Level 1</a></li>
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Group-level analysis: GLM Level 2+</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GLM_level1.html">GLM Level 1</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">GLM Level 2+</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
 <ul class="nav bd-sidenav">
@@ -378,7 +372,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Group-level analysis: GLM Level 2+</h1>
+    <h1>GLM Level 2+</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -416,8 +410,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="group-level-analysis-glm-level-2">
-<h1>Group-level analysis: GLM Level 2+<a class="headerlink" href="#group-level-analysis-glm-level-2" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="glm-level-2">
+<h1>GLM Level 2+<a class="headerlink" href="#glm-level-2" title="Permalink to this heading">#</a></h1>
 <p>!!! note</p>
 <p>Quotes on this page are from Poldrack, Mumford and Nichols (2011) unless otherwise noted.</p>
 <p>Group-level analyses can be level 2 or level 3 (i.e. the second or the third analysis step). If your design includes multiple runs for a single subject, then before your group-level analyses you should combine the estimates from each run for each subject. This is typically done through a <strong>fixed-effects model</strong>, which combines the level 1 estimates from each run of each subject by weighting them by the inverse of the within-run standard deviations (PMN, p. 104). In this case, level 2 would refer to your subject-level analyses that follows your run-level (level 1) analyses. Then, group-level analysis uses a <strong>mixed-effects model</strong> to combine subject level estimates.</p>
@@ -503,7 +497,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Subject-level analysis: GLM Level 1</p>
+        <p class="prev-next-title">GLM Level 1</p>
       </div>
     </a>
     <a class="right-next"

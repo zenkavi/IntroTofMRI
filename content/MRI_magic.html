@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Intro to fMRI</title>
+    <title>MRI magic &#8212; Intro to fMRI</title>
   
   
   
@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/MRI_magic.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="What is a magnetic gradient?" href="Glossary.html" />
+    <link rel="next" title="Glossary" href="Glossary.html" />
     <link rel="prev" title="Data download" href="Data_download.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -175,20 +175,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Data_download.html">Data download</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">MR Basics</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Glossary.html">What is a magnetic gradient?</a></li>
-
-
-
-
-
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MRI magic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Glossary.html">Glossary</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="GLM_level1.html">Subject-level analysis: GLM Level 1</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="GLM_level2.html">Group-level analysis: GLM Level 2+</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GLM_level1.html">GLM Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GLM_level2.html">GLM Level 2+</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
 <ul class="nav bd-sidenav">
@@ -365,9 +359,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -378,19 +370,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>MRI magic</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -400,7 +384,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p><img alt="MR basics" src="../_images/Mechanism-of-magnetic-resonance-imaging-A-Hydrogen-atoms-are-dispersed-within-the.png" /></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="mri-magic">
+<h1>MRI magic<a class="headerlink" href="#mri-magic" title="Permalink to this heading">#</a></h1>
+<p><img alt="MR basics" src="../_images/Mechanism-of-magnetic-resonance-imaging-A-Hydrogen-atoms-are-dispersed-within-the.png" /></p>
 <p>Image from</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Fordham</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span> <span class="n">J</span><span class="o">.</span><span class="p">,</span> <span class="n">Hacherl</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span> <span class="n">C</span><span class="o">.</span><span class="p">,</span> <span class="n">Patel</span><span class="p">,</span> <span class="n">N</span><span class="o">.</span><span class="p">,</span> <span class="n">Jones</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span><span class="p">,</span> <span class="n">Myers</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="p">,</span> <span class="n">Abraham</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span><span class="p">,</span> <span class="o">&amp;</span> <span class="n">Gendreau</span><span class="p">,</span> <span class="n">J</span><span class="o">.</span> <span class="p">(</span><span class="mi">2021</span><span class="p">)</span><span class="o">.</span> <span class="n">Differentiating</span> <span class="n">glioblastomas</span> <span class="kn">from</span> <span class="nn">solitary</span> <span class="n">brain</span> <span class="n">metastases</span><span class="p">:</span> <span class="n">an</span> <span class="n">update</span> <span class="n">on</span> <span class="n">the</span> <span class="n">current</span> <span class="n">literature</span> <span class="n">of</span> <span class="n">advanced</span> <span class="n">imaging</span> <span class="n">modalities</span><span class="o">.</span> <span class="n">Cancers</span><span class="p">,</span> <span class="mi">13</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="mf">2960.</span>
 </pre></div>
@@ -413,8 +399,7 @@ document.write(`
 <p>For our purposes, though the diagram above emphasizes individual nuclei <a class="reference external" href="https://mriquestions.com/net-magnetization-m.html">“it is preferable not to think about individual nuclei (with their “freaky” quantum behavior).  Instead you should think about the sum of their magnetic properties averaged together to create a net magnetization (M).”</a></p>
 <p><img alt="Pulse sequence" src="../_images/Pulse_seq.png" /></p>
 <p>Image from <a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/01-Image_Modalities/index.html">Structural MRI (Pre)processing and Neuroimaging Analysis</a></p>
-<p>How does the receiver coil work?</p>
-<p>“The oscillating net magnetic flux from the excited spin system can be captured by the [receiver] coil in which an induced electric current is generated.  This current is then amplified, digitized, and filtered to extract frequency and phase information. “</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -460,7 +445,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">What is a magnetic gradient?</p>
+        <p class="prev-next-title">Glossary</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -470,20 +455,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
