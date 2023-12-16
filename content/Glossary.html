@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Intro to fMRI</title>
+    <title>What is a magnetic gradient? &#8212; Intro to fMRI</title>
   
   
   
@@ -66,6 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/Glossary.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Subject-level analysis: GLM Level 1" href="GLM_level1.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="MRI_magic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,6 +172,27 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Topics.html">Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data_download.html">Data download</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MR Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">What is a magnetic gradient?</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="GLM_level1.html">Subject-level analysis: GLM Level 1</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="GLM_level2.html">Group-level analysis: GLM Level 2+</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Visualization_tools.html">Data visualization</a></li>
 </ul>
 
     </div>
@@ -355,7 +378,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>What is a magnetic gradient?</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -364,7 +387,13 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">What is a magnetic gradient?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-gradient-coil">What is a gradient coil?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-shimming">What is shimming?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-coils-in-a-scanner">What are the coils in a scanner?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-flip-angle">What is a flip angle?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-the-receiver-coil-work">How does the receiver coil work?</a></li>
 </ul>
 
             </nav>
@@ -377,15 +406,26 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>What is a magnetic gradient? From <a class="reference external" href="https://mriquestions.com/what-is-a-gradient.html">https://mriquestions.com/what-is-a-gradient.html</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="what-is-a-magnetic-gradient">
+<h1>What is a magnetic gradient?<a class="headerlink" href="#what-is-a-magnetic-gradient" title="Permalink to this heading">#</a></h1>
+<p>From <a class="reference external" href="https://mriquestions.com/what-is-a-gradient.html">https://mriquestions.com/what-is-a-gradient.html</a></p>
 <p>“Whenever a magnetic field differs in magnitude or direction between two points in space, a magnetic gradient is said to exist.    The gradient (G) is defined as change in field (ΔB) divided by change in distance (Δs).”<br />
 “A frequent misconception about gradient fields is that the x- and y-gradients somehow skew or shear the main (Bo) field transversely. That is not the case as is shown in the diagram to the right.  The x- and y-gradients provide augmentation in the z-direction to the Bo field as a function of left-right or anterior-posterior location in the gantry. The x- and y-gradients (ideally, at least) do not produce substantial components within the bore perpendicular to Bo.”</p>
-<p>What is a gradient coil? From <a class="reference external" href="https://mriquestions.com/arent-gradients-coils.html">https://mriquestions.com/arent-gradients-coils.html</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-is-a-gradient-coil">
+<h1>What is a gradient coil?<a class="headerlink" href="#what-is-a-gradient-coil" title="Permalink to this heading">#</a></h1>
+<p>From <a class="reference external" href="https://mriquestions.com/arent-gradients-coils.html">https://mriquestions.com/arent-gradients-coils.html</a></p>
 <p>“gradient coils [are] a set of electromagnets embedded in the body of the MR magnet assembly.  When an electrical current is passed through these coils, the main magnetic field is focally distorted in certain places, creating magnetic gradients of the first kind. Gradient coils alter the main magnetic field in a predictable manner in the x-, y-, and z-directions and are used to <strong>spatially</strong> encode the MR signal”</p>
-<p>What is shimming? From <a class="reference external" href="https://mriquestions.com/why-shimming.html">https://mriquestions.com/why-shimming.html</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-is-shimming">
+<h1>What is shimming?<a class="headerlink" href="#what-is-shimming" title="Permalink to this heading">#</a></h1>
+<p>From <a class="reference external" href="https://mriquestions.com/why-shimming.html">https://mriquestions.com/why-shimming.html</a></p>
 <p>“Shimming is the process by which the main magnetic field (Bo) is made more homogenous.
 Shimming may be passive, active, or both. In passive shimming small pieces of sheet metal or ferromagnetic pellets are affixed at various locations within the scanner bore. In active shimming, currents are directed through specialized coils to further improve homogeneity.”</p>
-<p>What are the coils in a scanner? From <a class="reference external" href="https://mriquestions.com/many-kinds-of-coils.html">https://mriquestions.com/many-kinds-of-coils.html</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-are-the-coils-in-a-scanner">
+<h1>What are the coils in a scanner?<a class="headerlink" href="#what-are-the-coils-in-a-scanner" title="Permalink to this heading">#</a></h1>
+<p>From <a class="reference external" href="https://mriquestions.com/many-kinds-of-coils.html">https://mriquestions.com/many-kinds-of-coils.html</a></p>
 <ul class="simple">
 <li><p>Main coils: Produce B_0</p></li>
 <li><p>Shim coils:  improve homogeniety</p></li>
@@ -393,12 +433,16 @@ Shimming may be passive, active, or both. In passive shimming small pieces of sh
 <li><p>RF (radio frequency) coils: transmit B_1 field</p></li>
 <li><p>Patient coils: Receive MR signal</p></li>
 </ul>
-<p>What is a flip angle? From <a class="reference external" href="https://mriquestions.com/rf-coil-functions.html">https://mriquestions.com/rf-coil-functions.html</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-is-a-flip-angle">
+<h1>What is a flip angle?<a class="headerlink" href="#what-is-a-flip-angle" title="Permalink to this heading">#</a></h1>
+<p>From <a class="reference external" href="https://mriquestions.com/rf-coil-functions.html">https://mriquestions.com/rf-coil-functions.html</a></p>
 <p>By adjusting the magnitude or duration of these B1 [RF] pulses, the nuclear spin system can be rotated by variable flip angles, such as 90º or 180º.</p>
-<p>How does the receiver coil work?</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="how-does-the-receiver-coil-work">
+<h1>How does the receiver coil work?<a class="headerlink" href="#how-does-the-receiver-coil-work" title="Permalink to this heading">#</a></h1>
 <p>“The oscillating net magnetic flux from the excited spin system can be captured by the [receiver] coil in which an induced electric current is generated.  This current is then amplified, digitized, and filtered to extract frequency and phase information. “</p>
-<p>How does the receiver coil work?</p>
-<p>“The oscillating net magnetic flux from the excited spin system can be captured by the [receiver] coil in which an induced electric current is generated.  This current is then amplified, digitized, and filtered to extract frequency and phase information. “</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -430,6 +474,24 @@ Shimming may be passive, active, or both. In passive shimming small pieces of sh
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="MRI_magic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="GLM_level1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Subject-level analysis: GLM Level 1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -444,7 +506,13 @@ Shimming may be passive, active, or both. In passive shimming small pieces of sh
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">What is a magnetic gradient?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-gradient-coil">What is a gradient coil?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-shimming">What is shimming?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-coils-in-a-scanner">What are the coils in a scanner?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-flip-angle">What is a flip angle?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-the-receiver-coil-work">How does the receiver coil work?</a></li>
 </ul>
 
   </nav></div>

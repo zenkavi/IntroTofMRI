@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Group-level analysis: GLM Level 2+ &#8212; Intro to fMRI</title>
+    <title>&lt;no title&gt; &#8212; Intro to fMRI</title>
   
   
   
@@ -62,12 +62,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/GLM_level2';</script>
-    <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/GLM_level2.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/MRI_magic';</script>
+    <link rel="canonical" href="https://zenkavi.github.io/IntroTofMRI/content/MRI_magic.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data visualization" href="Visualization_tools.html" />
-    <link rel="prev" title="Subject-level analysis: GLM Level 1" href="GLM_level1.html" />
+    <link rel="next" title="What is a magnetic gradient?" href="Glossary.html" />
+    <link rel="prev" title="Data download" href="Data_download.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -184,11 +184,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Analysis</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="GLM_level1.html">Subject-level analysis: GLM Level 1</a></li>
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Group-level analysis: GLM Level 2+</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GLM_level2.html">Group-level analysis: GLM Level 2+</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization</span></p>
 <ul class="nav bd-sidenav">
@@ -264,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/zenkavi/IntroTofMRI/issues/new?title=Issue%20on%20page%20%2Fcontent/GLM_level2.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/zenkavi/IntroTofMRI/issues/new?title=Issue%20on%20page%20%2Fcontent/MRI_magic.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -294,7 +294,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/content/GLM_level2.ipynb" target="_blank"
+      <li><a href="../_sources/content/MRI_magic.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -378,7 +378,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Group-level analysis: GLM Level 2+</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -387,25 +387,9 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effect-modeling-across-runs">Fixed effect modeling across runs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-effects-modeling-across-subjects">Mixed effects modeling across subjects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-level-inference">(Group-level) Inference</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-define-what-is-significant">How to define what is significant</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#voxel-level-definitions">Voxel-level definitions</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-level-definitions">Cluster-level definitions</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#threshold-free-cluster-enhancement">Threshold-free cluster enhancement</a></li>
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correction-for-multiple-comparisons">Correction for multiple comparisons</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fwe">FWE</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fdr">FDR</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masks-interactions-conjunctions-roi-analyses">Masks, interactions, conjunctions, ROI analyses</a></li>
-</ul>
-</li>
-</ul>
+
             </nav>
         </div>
     </div>
@@ -416,56 +400,21 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="group-level-analysis-glm-level-2">
-<h1>Group-level analysis: GLM Level 2+<a class="headerlink" href="#group-level-analysis-glm-level-2" title="Permalink to this heading">#</a></h1>
-<p>!!! note</p>
-<p>Quotes on this page are from Poldrack, Mumford and Nichols (2011) unless otherwise noted.</p>
-<p>Group-level analyses can be level 2 or level 3 (i.e. the second or the third analysis step). If your design includes multiple runs for a single subject, then before your group-level analyses you should combine the estimates from each run for each subject. This is typically done through a <strong>fixed-effects model</strong>, which combines the level 1 estimates from each run of each subject by weighting them by the inverse of the within-run standard deviations (PMN, p. 104). In this case, level 2 would refer to your subject-level analyses that follows your run-level (level 1) analyses. Then, group-level analysis uses a <strong>mixed-effects model</strong> to combine subject level estimates.</p>
-<section id="fixed-effect-modeling-across-runs">
-<h2>Fixed effect modeling across runs<a class="headerlink" href="#fixed-effect-modeling-across-runs" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="mixed-effects-modeling-across-subjects">
-<h2>Mixed effects modeling across subjects<a class="headerlink" href="#mixed-effects-modeling-across-subjects" title="Permalink to this heading">#</a></h2>
-<p>See section 6.1.1. of PMN for why we need mixed effects modeling.</p>
-<p>To estimate a mixed effects model one can use the individual within subject variance estimates from level one analyses and use a weighted linear regression to down-weight subjects with high wihtin subject variability. Alternatively, one can make the simplifying assumption that within subjects’s variance is the same across all subjects. This would imply the same mixed effects variance (sum of within and between subjects variance) across subjects so one can use ordinary least squares to estimate the summed value for the mixed effects variance.</p>
-</section>
-<section id="group-level-inference">
-<h2>(Group-level) Inference<a class="headerlink" href="#group-level-inference" title="Permalink to this heading">#</a></h2>
-<section id="how-to-define-what-is-significant">
-<h3>How to define what is significant<a class="headerlink" href="#how-to-define-what-is-significant" title="Permalink to this heading">#</a></h3>
-<p>One you have computed an image of test statistics for the group, you need to determine which of these statistics indicate meaningful activations/differences.</p>
-<section id="voxel-level-definitions">
-<h4>Voxel-level definitions<a class="headerlink" href="#voxel-level-definitions" title="Permalink to this heading">#</a></h4>
-<p>Since each step of the analysis has been done on a voxel level until this point, a natural way to make an inference on which test statistics are “significant” would be look at each individual voxel in isolation. If the statistic passes a threshold (that accounts for multiple comparison as described below) then you can infer that there is a meaningful signal in that voxel. This approach is very intuitive but does not take into account the spatial nature of the data and the preprocessing steps involving smoothing that might reduce peak activation in any given voxel.</p>
-</section>
-<section id="cluster-level-definitions">
-<h4>Cluster-level definitions<a class="headerlink" href="#cluster-level-definitions" title="Permalink to this heading">#</a></h4>
-<p>Another approach that would account for the spatial nature of the data and be less susceptible to peak activations (or lack thereof) in individual voxels is cluster-level inference. In this approach one identifies not individual voxels but connected clusters of voxels that systematically change activity above some threshold that is typically lower than one applied in voxel-level inference. Often many individual voxels in a “significant” cluster might not exceed the threshold used for voxel-level inference but their connected systematic change implies a meaningful difference for the contrast of interest.</p>
-<p>Cluster-level inference involves defining three thresholds. First, one determines the “cluster-forming threshold”, a threshold applied to the test statistics in each voxel. Then, one defines what constitutes a “connection” to qualify for a cluster, i.e. the number of shared edges betwee voxels. Finally, a “cluster-size threshold” (accounting for multiple comparisons) is determined to select clusters that are large enough (contain a sufficient number of voxels) to be considered significant. This traditional approach ignores the individual test statistic values in a cluster as long as they pass the thresholds. “Cluster mass” based approaches address this by including this information in their cluster definitions as well.</p>
-</section>
-<section id="threshold-free-cluster-enhancement">
-<h4>Threshold-free cluster enhancement<a class="headerlink" href="#threshold-free-cluster-enhancement" title="Permalink to this heading">#</a></h4>
-<p>The major drawback for cluster-based inference is that setting the initial cluster-forming threshold is relatively arbitrary but very consequential in defining clusters. TFCE is developed to address this. It integrates over possible values of the the cluster-forming threshold and produces a “voxel-level map that indiciates cluster-level significance” (PMN, p. 115).</p>
-</section>
-</section>
-<section id="correction-for-multiple-comparisons">
-<h3>Correction for multiple comparisons<a class="headerlink" href="#correction-for-multiple-comparisons" title="Permalink to this heading">#</a></h3>
-<p>Two terms you’ll read about in this context are family-wise error-rate (FWE) and false-discovery rate (FDR). Both of these try to control for Type I errors (false positives) across multiple tests. In the context of a single test this is done by controlling the level of alpha but when more tests (e.g. as many as the number of voxels in the case of mass univariate analyses) are involved the number of tests needs to be accounted for as well.</p>
-<section id="fwe">
-<h4>FWE<a class="headerlink" href="#fwe" title="Permalink to this heading">#</a></h4>
-<p>There are multiple methods for controlling FWE including Bonferroni correction, Random Field Theory (RFT) and parametric simulations but these are either too conservative or too computationally intensive. Another alternative is to use nonparametric simulations. Though these too can me computationally intensive, nonparametric approaches are slightly more intuitive, do no make parametric assumptions about the p-value distributions and allow you to create empirical null distributions (which can be done for any kind of test statistic, not just t-values). Empirical null distributions are created by permutation tests where the labels of the data are repeatedly shuffled and the test statistic recomputed with the new labels. Then one can compare the observed true test statistic to the distribution of shuffled test statistics to determine whether it is too extreme to have been observed given the null distribution. Note, however, that the key assumption here is that observations are independent from each other. This means that a permutation test can be applied to test statistics across subjects (since each subject is independent from each other) but <strong>not</strong> within subject (at least not easily) to due temporal autocorrelation in the data. Additionally, voxel-level tests, especially with small samples rarely ever survive FWE corrections. Therefore, nonparametric options controlling for FWE are typically restricted to subject level analyses.</p>
-</section>
-<section id="fdr">
-<h4>FDR<a class="headerlink" href="#fdr" title="Permalink to this heading">#</a></h4>
-<p>Still, voxel-level tests do need to account for multiple comparisons as well. FDR correction procedures are a less conservative way of doing this. These (not detailed here) aim to control for the false discovery proportion (FDP), which is the fraction of false positives in the detected voxels. This makes FDR more sensitive than FWE to detect signal but it is also less specific. The FDR rate is only guaranteed across many experiments in the long run and can be higher or lower for any given experiment. It also does not have any spatial specificity, all voxels’ significance is treated in the same way.</p>
-</section>
-</section>
-<section id="masks-interactions-conjunctions-roi-analyses">
-<h3>Masks, interactions, conjunctions, ROI analyses<a class="headerlink" href="#masks-interactions-conjunctions-roi-analyses" title="Permalink to this heading">#</a></h3>
-<p>ROI analysis, a.k.a. small volume correction,</p>
-</section>
-</section>
-</section>
+  <p><img alt="MR basics" src="../_images/Mechanism-of-magnetic-resonance-imaging-A-Hydrogen-atoms-are-dispersed-within-the.png" /></p>
+<p>Image from</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Fordham</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span> <span class="n">J</span><span class="o">.</span><span class="p">,</span> <span class="n">Hacherl</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span> <span class="n">C</span><span class="o">.</span><span class="p">,</span> <span class="n">Patel</span><span class="p">,</span> <span class="n">N</span><span class="o">.</span><span class="p">,</span> <span class="n">Jones</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span><span class="p">,</span> <span class="n">Myers</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="p">,</span> <span class="n">Abraham</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span><span class="p">,</span> <span class="o">&amp;</span> <span class="n">Gendreau</span><span class="p">,</span> <span class="n">J</span><span class="o">.</span> <span class="p">(</span><span class="mi">2021</span><span class="p">)</span><span class="o">.</span> <span class="n">Differentiating</span> <span class="n">glioblastomas</span> <span class="kn">from</span> <span class="nn">solitary</span> <span class="n">brain</span> <span class="n">metastases</span><span class="p">:</span> <span class="n">an</span> <span class="n">update</span> <span class="n">on</span> <span class="n">the</span> <span class="n">current</span> <span class="n">literature</span> <span class="n">of</span> <span class="n">advanced</span> <span class="n">imaging</span> <span class="n">modalities</span><span class="o">.</span> <span class="n">Cancers</span><span class="p">,</span> <span class="mi">13</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="mf">2960.</span>
+</pre></div>
+</div>
+<p>This is a useful image for initial understanding/undergraduate teaching <em>but</em> there is a lot more subtlety to it stemming from differences between classical and quantum explanation of magnetic resonance. This is beyond of the scope of this tutorial but if interested here is are some resources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mriquestions.com/quantum-reality.html">https://mriquestions.com/quantum-reality.html</a></p></li>
+<li><p><a class="reference external" href="https://www.drcmr.dk/MR">https://www.drcmr.dk/MR</a></p></li>
+</ul>
+<p>For our purposes, though the diagram above emphasizes individual nuclei <a class="reference external" href="https://mriquestions.com/net-magnetization-m.html">“it is preferable not to think about individual nuclei (with their “freaky” quantum behavior).  Instead you should think about the sum of their magnetic properties averaged together to create a net magnetization (M).”</a></p>
+<p><img alt="Pulse sequence" src="../_images/Pulse_seq.png" /></p>
+<p>Image from <a class="reference external" href="https://carpentries-incubator.github.io/SDC-BIDS-sMRI/01-Image_Modalities/index.html">Structural MRI (Pre)processing and Neuroimaging Analysis</a></p>
+<p>How does the receiver coil work?</p>
+<p>“The oscillating net magnetic flux from the excited spin system can be captured by the [receiver] coil in which an induced electric current is generated.  This current is then amplified, digitized, and filtered to extract frequency and phase information. “</p>
 
     <script type="text/x-thebe-config">
     {
@@ -498,20 +447,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="GLM_level1.html"
+       href="Data_download.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Subject-level analysis: GLM Level 1</p>
+        <p class="prev-next-title">Data download</p>
       </div>
     </a>
     <a class="right-next"
-       href="Visualization_tools.html"
+       href="Glossary.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data visualization</p>
+        <p class="prev-next-title">What is a magnetic gradient?</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -529,25 +478,9 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-effect-modeling-across-runs">Fixed effect modeling across runs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-effects-modeling-across-subjects">Mixed effects modeling across subjects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-level-inference">(Group-level) Inference</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-define-what-is-significant">How to define what is significant</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#voxel-level-definitions">Voxel-level definitions</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-level-definitions">Cluster-level definitions</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#threshold-free-cluster-enhancement">Threshold-free cluster enhancement</a></li>
+    <ul class="simple visible nav section-nav flex-column">
 </ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correction-for-multiple-comparisons">Correction for multiple comparisons</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fwe">FWE</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fdr">FDR</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masks-interactions-conjunctions-roi-analyses">Masks, interactions, conjunctions, ROI analyses</a></li>
-</ul>
-</li>
-</ul>
+
   </nav></div>
 
 </div></div>
