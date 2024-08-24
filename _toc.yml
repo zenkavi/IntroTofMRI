@@ -4,14 +4,14 @@
 format: jb-book
 root: content/intro
 parts:
-- caption: Overview
-  chapters:
-  - file: content/Topics
-  - file: content/Data_download
-- caption: MR Basics
-  chapters:
-    - file: content/MRI_magic
-    - file: content/Glossary
+# - caption: Overview
+  # chapters:
+  # - file: content/Topics
+  # - file: content/Data_download
+# - caption: MR Basics
+  # chapters:
+    # - file: content/MRI_magic
+    # - file: content/Glossary
 # - caption: Data Structure and Organization
   # chapters:
     # - file: content/File_types
@@ -24,16 +24,16 @@ parts:
     # - file: content/Functional_preprocessing
     # - file: content/fmriprep
     # - file: content/Quality_control
-- caption: Data Analysis
-  chapters:
-    - file: content/GLM_level1
-    - file: content/GLM_level2
+# - caption: Data Analysis
+  # chapters:
+    # - file: content/GLM_level1
+    # - file: content/GLM_level2
     # - file: content/Encoding_models
     # - file: content/Decoding
     # - file: content/RSA
     # - file: content/Intersubject_synchronization
     # - file: content/Latent_state_discovery
-- caption: Visualization
-  chapters:
-    - file: content/Visualization_tools
+# - caption: Visualization
+  # chapters:
+    # - file: content/Visualization_tools
 # - caption: Data sharing and finding
